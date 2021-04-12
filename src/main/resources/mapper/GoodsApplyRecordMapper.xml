@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.GoodsApplyRecordMapper">
+
+    <sql id="select">
+        goods_id, in_apply_time, out_apply_time, goods_man_in_id, goods_man_out_id
+    </sql>
+    <select id="getApplyRecord" resultType="com.ye.warehouse.entity.GoodsApplyRecord">
+        select <include refid="select"></include>
+        from goods_apply_record
+        where goods_id = #{id}
+    </select>
+
+    <insert id="insertApplyRecord" >
+        insert into goods_apply_record(goods_id, in_apply_time, goods_man_in_id)
+        values (#{goodsId}, #{inApplyTime}, #{goodsManInId})
+    </insert>
+
+    <update id="updateOutApplyTime">
+        update goods_apply_record set out_apply_time = #{outApplyTime}, goods_man_out_id = #{gmId}
+        where goods_id = #{id}
+    </update>
+</mapper>
+

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/letter.css}"/>
+    <title>消息详情</title>
+</head>
+<body>
+<div class="nk-container">
+
+
+    <!-- 内容 -->
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <h6><b class="square"></b> 与
+                        <i class="text-success" th:utext="${target.name}">落基山脉下的闲人</i>（
+                        <small class="text-success" th:utext="${target.roleName}"
+                               style="font-size: 1px">落基山脉下的闲人</small>
+                        ）的聊天</h6>
+                </div>
+                <div class="col-4 text-right">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="back();">返回</button>
+
+                </div>
+            </div>
+            <!-- 提示框 -->
+            <div class="modal fade" id="hintModal" tabindex="-1" role="dialog" aria-labelledby="hintModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="hintModalLabel">提示</h5>
+                        </div>
+                        <div class="modal-body" id="hintBody">
+                            发送完毕!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 私信列表 -->
+            <ul class="list-unstyled mt-4">
+                <li class="media " th:each="map:${letters}">
+                    <img th:src="${map.fromUser.header}" class="mr-4 rounded-circle user-header" alt="用户头像"
+                         th:onclick="showTel([[${map.fromUser.tel}]])"
+                         th:if="${map.fromUser.id!=meId||map.fromUser.role!=session.role}">
+                    <div class="toast show d-lg-block" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong class="mr-auto" th:utext="${map.fromUser.name}">落基山脉下的闲人</strong>
+                            <small class="mr-auto" th:utext="${map.fromUser.roleName}">落基山脉下的闲人></small>
+                            <small th:text="${#dates.format(map.letter.createTime,'yyyy-MM-dd HH:mm:ss')}">2019-04-25
+                                15:49:32</small>
+                            <input type="text" style="display:none;" name="toId" id="delete-id"
+                                   th:value="${map.letter.messageId}">
+
+                        </div>
+                        <div class="toast-body" th:utext="${map.letter.content}">
+                            君不见, 黄河之水天上来, 奔流到海不复回!
+                        </div>
+                    </div>
+                    <img th:src="${map.fromUser.header}" class="mr-4 rounded-circle user-header" alt="用户头像"
+                         th:if="${map.fromUser.id==meId&&map.fromUser.role==session.role}">
+                </li>
+            </ul>
+
+            <nav class="mt-5" th:replace="in_apply::pagination">
+
+            </nav>
+
+            <form>
+                <div class="form-group">
+                    <input type="text" style="display:none;" name="toId" id="recipient-id" th:value="${target.id}">
+                    <input type="text" style="display:none;" name="toRole" id="recipient-role" class="form-control"
+                           th:value="${target.role}">
+                    <input type="text" style="display:none;" class="form-control" th:value="${target.roleName}">
+                </div>
+                <textarea class="form-control" id="message-text" name="content" rows="2"></textarea>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary"  id="sendBtn">发送</button>
+                </div>
+            </form>
+        <!-- 分页 -->
+
+    </div>
+</div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/global.js}"></script>
+<script th:src="@{/js/letter.js}"></script>
+<script th:inline="javascript">
+    function back() {
+        window.location.href = "/warehouse/letter/list";
+    }
+
+    function showTel(tel) {
+        alert("他的电话号码为：" + tel);
+    }
+</script>
+</body>
+</html>

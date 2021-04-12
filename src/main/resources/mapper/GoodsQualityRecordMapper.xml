@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.GoodsQualityRecordMapper">
+    <sql id="insert">
+        goods_id, goods_quality_in_result, goods_quality_in_time, quality_man_in_id
+    </sql>
+    <sql id="select">
+        goods_id, goods_quality_in_result, goods_quality_in_time, quality_man_in_id, goods_quality_out_time, goods_quality_out_result, quality_man_out_id
+    </sql>
+    <insert id="insertRecord">
+        insert into goods_quality_record(<include refid="insert"></include>)
+        values (#{goodsId}, #{goodsQualityInResult}, #{goodsQualityInTime}, #{qualityManInId})
+    </insert>
+    <update id="updateRecordOutResult">
+        update goods_quality_record
+        set goods_quality_out_time = #{time}, goods_quality_out_result = #{result}, quality_man_out_id = #{qmId}
+        where goods_id = #{id}
+    </update>
+    <select id="selectRecord" resultType="com.ye.warehouse.entity.GoodsQualityRecord">
+        select <include refid="select"></include>
+        from goods_quality_record
+        where goods_id = #{id}
+    </select>
+</mapper>

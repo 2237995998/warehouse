@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.GoodsMapper">
+    <sql id="select">
+        goods_id, goods_status, goods_location, goods_category_id
+    </sql>
+    <sql id="insert">
+        goods_status, goods_category_id
+    </sql>
+    <select id="selectGoodsById" resultType="com.ye.warehouse.entity.Goods">
+        select <include refid="select"> </include>
+        from goods
+        where goods_id = #{id}
+    </select>
+    <select id="selectAllByGoodsTypeId" resultType="com.ye.warehouse.entity.Goods">
+        select <include refid="select"> </include>
+        from goods
+        where goods_status = #{status}
+        <if test="id!=-1">
+            and goods_category_id = #{id}
+        </if>
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectAllCountByGoodsTypeId" resultType="java.lang.Integer">
+        select count(*)
+        from goods
+        where goods_status = #{status}
+        <if test="id!=-1">
+            and goods_category_id = #{id}
+        </if>
+    </select>
+
+    <insert id="insertGoods" parameterType="com.ye.warehouse.entity.Goods" keyProperty="goodsId">
+        insert into goods(<include refid="insert"></include>)
+        values (#{goodsStatus}, #{goodsCategoryId})
+    </insert>
+
+    <select id="getOnGoodsCount" resultType="java.lang.Integer">
+        select count(*)
+        from goods
+        where (goods_status = 1 || goods_status = 2 || goods_status = 4 || goods_status = 5 || goods_status = 6)
+        <if test="type!=-1">
+            and goods_category_id = #{type}
+        </if>
+    </select>
+
+
+    <update id="updateGoodsStatus">
+        update goods
+        set goods_status = #{status}
+        where goods_id = #{id}
+    </update>
+    <select id="selectALlInGoodsByCount" resultType="com.ye.warehouse.entity.Goods">
+        select goods.goods_id, goods_status, goods_category_id, goods_location
+        from goods, goods_apply_record
+        where goods_category_id= #{type} and goods.goods_id = goods_apply_record.goods_id and goods.goods_status = 4
+        order by in_apply_time desc
+        limit 0, #{count}
+    </select>
+
+    <update id="updateLocation">
+        update goods
+        set goods_location = #{location}
+        where goods_id = #{id}
+    </update>
+
+    <select id="selectAllGoods" resultType="com.ye.warehouse.entity.Goods">
+        select goods.goods_id, goods_status, goods_category_id, goods_location
+        from goods, goods_apply_record
+        where goods.goods_id = goods_apply_record.goods_id
+        order by in_apply_time desc
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectAllGoodsCount" resultType="java.lang.Integer">
+        select count(*)
+        from goods
+    </select>
+
+
+</mapper>

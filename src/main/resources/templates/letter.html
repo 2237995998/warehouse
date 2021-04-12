@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/global.css}" />
+	<link rel="stylesheet" th:href="@{/css/letter.css}" />
+	<title>消息列表</title>
+</head>
+<body>
+<div class="nk-container">
+
+	<!-- 内容 -->
+	<div class="main">
+		<div class="container">
+			<div class="position-relative">
+				<!-- 选项 -->
+				<ul class="nav nav-tabs mb-3">
+					<li class="nav-item">
+						<a class="nav-link position-relative active" th:href="@{/letter/list}">
+							消息列表<span class="badge badge-danger" th:text="${letterUnreadCount}" th:if="${letterUnreadCount!=0}">3</span>
+						</a>
+					</li>
+				</ul>
+				<button type="button" class="btn btn-primary btn-sm position-absolute rt-0" data-toggle="modal" data-target="#sendModal">发消息</button>
+			</div>
+			<!-- 弹出框 -->
+			<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">发消息</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="recipient-id" class="col-form-label">发给：</label>
+									<input type="text" class="form-control" placeholder="输入对方账号" id="recipient-id">
+									<label for="recipient-role" class="col-form-label">选择其身份：</label>
+									<select name="role" class="form-control" id="recipient-role">
+										<option value=0>系统管理员</option>
+										<option value=1>商品运输员</option>
+										<option value=2>质检员</option>
+										<option value=3>仓库管理员</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">内容：</label>
+									<textarea class="form-control" id="message-text" rows="10"></textarea>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+							<button type="button" class="btn btn-primary" id="sendBtn">发送</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 提示框 -->
+			<div class="modal fade" id="hintModal" tabindex="-1" role="dialog" aria-labelledby="hintModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="hintModalLabel">提示</h5>
+						</div>
+						<div class="modal-body" id="hintBody">
+							发送完毕!
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 私信列表 -->
+			<ul class="list-unstyled">
+				<li class="media pb-3 pt-3 mb-3 border-bottom position-relative" th:each="map:${conversations}">
+					<span class="badge badge-danger" th:text="${map.unreadCount}" th:if="${map.unreadCount!=0}">3</span>
+
+					<img th:src="${map.target.header}" th:onclick="showTel([[${map.target.tel}]])" class="mr-4 rounded-circle user-header" alt="用户头像" >
+
+					<div class="media-body">
+						<h6 class="mt-0 mb-3">
+							<span class="text-success" th:utext="${map.target.name}">落基山脉下的闲人</span>
+							<span class="text-success" th:utext="${map.target.roleName}" style="font-size: 1px">落基山脉下的闲人</span>
+							<span class="float-right text-muted font-size-12" th:text="${#dates.format(map.conversation.createTime,'yyyy-MM-dd HH:mm:ss')}">2019-04-28 14:13:25</span>
+						</h6>
+						<div>
+							<a th:href="@{|/letter/detail/${map.conversation.conversationId}|}" th:utext="${map.conversation.content}">米粉车, 你来吧!</a>
+							<ul class="d-inline font-size-12 float-right">
+								<li class="d-inline ml-2"><a th:href="@{|/letter/detail/${map.conversation.conversationId}|}" class="text-primary">共<i th:text="${map.letterCount}">5</i>条消息</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<!-- 分页 -->
+			<nav class="mt-5" th:replace="in_apply::pagination">
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	<!-- 尾部 -->
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+<script th:src="@{/js/letter.js}"></script>
+
+<script th:inline="javascript">
+	function showTel(tel) {
+		alert("他的电话号码为：" + tel);
+	}
+</script>
+</body>
+</html>

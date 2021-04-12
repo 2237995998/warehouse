@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.WarehouseMapper">
+
+
+    <select id="selectWarehouse" resultType="com.ye.warehouse.entity.Warehouse">
+        select warehouse_id, usable_capacity, total_capacity, system_manager_id
+        from warehouse
+        where warehouse_id = #{wid}
+    </select>
+
+    <update id="updateUsableCapacity">
+        update warehouse set usable_capacity = #{usableCapacity}, system_manager_id=#{sid}
+        where warehouse_id = #{wid}
+    </update>
+</mapper>

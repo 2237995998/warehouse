@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.GoodsTypeMapper">
+    <sql id="select">
+        goods_category_id, goods_category_name, goods_category_picture, goods_category_status
+    </sql>
+    <sql id="insert">
+        goods_category_name, goods_category_picture, goods_category_status
+    </sql>
+    <select id="getGoodsTypes" resultType="com.ye.warehouse.entity.GoodsCategory">
+        select <include refid="select"></include>
+        from goods_category
+        where goods_category_status = 1
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="getGoodsTypesCount" resultType="java.lang.Integer">
+        select count(*)
+        from goods_category
+        where goods_category_status = 1
+    </select>
+
+    <select id="selectGoodsType" resultType="com.ye.warehouse.entity.GoodsCategory">
+        select <include refid="select"></include>
+        from goods_category
+        where goods_category_id = #{type} and goods_category_status = 1
+    </select>
+    <insert id="insertGoodsType" parameterType="com.ye.warehouse.entity.GoodsCategory" keyProperty="goodsCategoryId">
+        insert into goods_category (<include refid="insert"></include>)
+        values(#{goodsCategoryName}, #{goodsCategoryPicture},  #{goodsCategoryStatus})
+    </insert>
+    <delete id="updateStatus">
+        update goods_category
+        set goods_category_status = #{status}
+        where goods_category_id = #{id}
+    </delete>
+    <update id="updatePicture">
+        update goods_category set goods_category_picture = #{url} where goods_category_id = #{id}
+    </update>
+    <update id="updateName">
+        update goods_category set goods_category_name = #{name} where goods_category_id = #{id}
+    </update>
+</mapper>

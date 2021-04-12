@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/Site.css}" />
+    <link rel="stylesheet" th:href="@{/css/zy.all.css}" />
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/amazeui.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+    <style>
+
+    </style>
+<body>
+<div class="dvcontent">
+
+    <div>
+        <!--tab start-->
+        <div class="tabs">
+            <div class="hd">
+                <ul style="">
+                    <li style="box-sizing: initial;-webkit-box-sizing: initial;" class="on">出库申请</li>
+
+                </ul>
+            </div>
+            <div class="bd">
+                <ul class="theme-popbod dform"style="display: block;padding: 20px;">
+                        <li>
+                            <!--分页显示角色信息 start-->
+                            <div >
+                                <table class="table" id="tbRecord">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>类别</th>
+                                        <th>库存剩余</th>
+                                        <th>申请</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="list:${list}">
+                                        <td th:text="${listStat.index}+1">1</td>
+                                        <td th:text="${list.category.goodsCategoryName}">肉类</td>
+                                        <td th:text="${list.count}">肉类</td>
+                                        <td>
+                                            <span>
+                                                <form th:action="@{/GM/outApply}" method="post">
+                                                    <input type="text" name="count" placeholder="数量">
+                                                    <input type="text" style="display: none" name="goodsType" th:value="${list.category.goodsCategoryId}">
+                                            <button class="btn btn-primary">
+                                                <span class="iconfont icon-search">
+                                                    申请
+                                                </span>
+                                            </button>
+                                                </form>
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <!--分页显示角色信息 end-->
+                        </li>
+                    <nav class="mt-5" th:replace="in_apply::pagination">
+                    </nav>
+                </ul>
+
+        </div>
+            </div>
+            <!--tab end-->
+
+        </div>
+
+        <script th:src="@{/js/jquery-1.7.2.min.js}" type="text/javascript"></script>
+        <script th:src="@{/js/plugs/Jqueryplugs.js}" type="text/javascript"></script>
+        <script th:src="@{/js/_layout.js}"></script>
+        <script th:src="@{/js/plugs/jquery.SuperSlide.source.js}"></script>
+
+        <script>
+            var num = 1;
+            $(function() {
+
+                $(".tabs").slide({ trigger: "click" });
+
+            });
+
+        </script>
+
+    </div>
+
+    <script th:inline="javascript" >
+        var msg = [[${msg}]]
+        if (msg != null){
+            alert(msg);
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.MessageMapper">
+
+    <sql id="selectFields">
+        message_id, from_id, from_role, to_id, to_role, conversation_id, content, status, create_time
+    </sql>
+
+    <sql id="insertFields">
+        from_id, from_role, to_id, to_role, conversation_id, content, status, create_time
+    </sql>
+
+    <select id="selectConversation" resultType="com.ye.warehouse.entity.Message">
+        select <include refid="selectFields"></include>
+        from message
+        where message_id in (
+            select max(message_id) from message
+            where  status != 2
+            and from_id != -1
+            and ((from_id = #{userId} and from_role = #{role}) or (to_id = #{userId} and to_role = #{role}))
+            group by conversation_id
+        )
+        order by create_time desc
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectLetters" resultType="com.ye.warehouse.entity.Message">
+        select <include refid="selectFields"></include>
+        from message
+        where  status != 2
+        and from_id != -1
+        and conversation_id = #{conversationId}
+        order by message_id desc
+        limit #{offset}, #{limit}
+    </select>
+
+
+    <insert id="insertMessage" parameterType="com.ye.warehouse.entity.Message" keyProperty="messageId">
+        insert into message (<include refid="insertFields"></include>)
+        values (#{fromId}, #{fromRole}, #{toId}, #{toRole}, #{conversationId}, #{content}, #{status}, #{createTime})
+    </insert>
+
+    <update id="updateStatus">
+        update message set status = #{status}
+        where message_id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+
+    <select id="selectConversationCount" resultType="java.lang.Integer">
+
+        select count(m.maxid) from(
+			select max(message_id) as maxid from message
+            where   status != 2
+            and from_id != -1
+            and ((from_id = #{userId} and from_role = #{role}) or (to_id = #{userId} and to_role = #{role}))
+            group by conversation_id
+        )AS m
+    </select>
+    <select id="selectLetterCount" resultType="java.lang.Integer">
+        select count(message_id)
+        from message
+        where  status != 2
+        and from_id != -1
+        and conversation_id = #{conversationId}
+    </select>
+    <select id="selectLetterUnreadCount" resultType="java.lang.Integer">
+        select count(message_id)
+        from message
+        where status = 0
+        and from_id != -1
+        and to_id = #{userId} and to_role = #{role}
+        <if test="conversationId!=null">
+            and conversation_id = #{conversationId}
+        </if>
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+

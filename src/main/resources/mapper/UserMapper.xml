@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.UserMapper">
+<!-- 系统管理员操作相关-->
+    <sql id="selectSM">
+        system_manager_id, system_manager_pwd, system_manager_name,  system_manager_header, system_manager_status, system_manager_tel
+    </sql>
+    <sql id="insertSM">
+        system_manager_pwd, system_manager_name, system_manager_header, system_manager_status, system_manager_tel
+    </sql>
+    <select id="selectSystemManagerById" resultType="com.ye.warehouse.entity.SystemManager">
+        select <include refid="selectSM"></include>
+        from system_manager
+        where system_manager_id = #{id}
+    </select>
+    <select id="selectSystemManagerByName" resultType="com.ye.warehouse.entity.SystemManager">
+        select <include refid="selectSM"></include>
+        from system_manager
+        where system_manager_name = #{username}
+    </select>
+
+    <select id="selectSystemManagerByTel" resultType="com.ye.warehouse.entity.SystemManager">
+        select <include refid="selectSM"></include>
+        from system_manager
+        where system_manager_tel = #{tel}
+    </select>
+    <insert id="insertSystemManager" parameterType="com.ye.warehouse.entity.SystemManager" keyProperty="systemManagerId">
+        insert into system_manager (<include refid="insertSM"></include>)
+        values(#{systemManagerPwd}, #{systemManagerName}, #{systemManagerHeader}, #{systemManagerStatus})
+    </insert>
+    <update id="updateSystemManagerStatus">
+        update system_manager set system_manager_status = #{status} where system_manager_id = #{id}
+    </update>
+    <update id="updateSystemManagerHeader">
+        update system_manager set system_manager_header = #{headerUrl} where system_manager_id = #{id}
+    </update>
+    <update id="updateSystemManagerPassword">
+        update system_manager set system_manager_pwd = #{password} where system_manager_id = #{id}
+    </update>
+
+
+<!-- 商品运输员操作相关-->
+    <sql id="selectGM">
+        goods_man_id, goods_man_pwd, goods_man_name, goods_man_header, goods_man_status, goods_man_tel
+    </sql>
+    <sql id="insertGM">
+        goods_man_pwd, goods_man_name, goods_man_header, goods_man_status, goods_man_tel
+    </sql>
+    <select id="selectGoodsManById" resultType="com.ye.warehouse.entity.GoodsMan">
+        select <include refid="selectGM"></include>
+        from goods_man
+        where goods_man_id = #{id}
+    </select>
+    <select id="selectGoodsManByName" resultType="com.ye.warehouse.entity.GoodsMan">
+        select <include refid="selectGM"></include>
+        from goods_man
+        where goods_man_name = #{username}
+    </select>
+    <select id="selectGoodsManByTel" resultType="com.ye.warehouse.entity.GoodsMan">
+        select <include refid="selectGM"></include>
+        from goods_man
+        where goods_man_tel = #{tel}
+    </select>
+    <insert id="insertGoodsMan" parameterType="com.ye.warehouse.entity.GoodsMan" keyProperty="goodsManId">
+        insert into goods_man (<include refid="insertGM"></include>)
+        values(#{goodsManPwd}, #{goodsManName}, #{goodsManHeader}, #{goodsManStatus}, #{goodsManTel})
+    </insert>
+    <update id="updateGoodsManStatus">
+        update goods_man set goods_man_status = #{status} where goods_man_id = #{id}
+    </update>
+    <update id="updateGoodsManHeader">
+        update goods_man set goods_man_header = #{headerUrl} where goods_man_id = #{id}
+    </update>
+    <update id="updateGoodsManPassword">
+        update goods_man set goods_man_pwd = #{password} where goods_man_id = #{id}
+    </update>
+    <select id="selectGoodsMen" resultType="com.ye.warehouse.entity.GoodsMan">
+        select <include refid="selectGM"></include>
+        from goods_man
+        where goods_man_status = #{status}
+    </select>
+
+
+<!-- 质检员操作相关-->
+    <sql id="selectQM">
+        quality_man_id, quality_man_pwd, quality_man_name, quality_man_header, quality_man_status, quality_man_tel
+    </sql>
+    <sql id="insertQM">
+        quality_man_pwd, quality_man_name, quality_man_header, quality_man_status, quality_man_tel
+    </sql>
+    <select id="selectQualityManById" resultType="com.ye.warehouse.entity.QualityMan">
+        select <include refid="selectQM"></include>
+        from quality_man
+        where quality_man_id = #{id}
+    </select>
+    <select id="selectQualityManByName" resultType="com.ye.warehouse.entity.QualityMan">
+        select <include refid="selectQM"></include>
+        from quality_man
+        where quality_man_name = #{username}
+    </select>
+    <select id="selectQualityManByTel" resultType="com.ye.warehouse.entity.QualityMan">
+        select <include refid="selectQM"></include>
+        from quality_man
+        where quality_man_tel = #{tel}
+    </select>
+    <insert id="insertQualityMan" parameterType="com.ye.warehouse.entity.QualityMan" keyProperty="qualityManId">
+        insert into quality_man (<include refid="insertQM"></include>)
+        values(#{qualityManPwd}, #{qualityManName}, #{qualityManHeader}, #{qualityManStatus}, #{qualityManTel})
+    </insert>
+    <update id="updateQualityManStatus">
+        update quality_man set quality_man_status = #{status} where quality_man_id = #{id}
+    </update>
+    <update id="updateQualityManHeader">
+        update quality_man set quality_man_header = #{headerUrl} where quality_man_id = #{id}
+    </update>
+    <update id="updateQualityManPassword">
+        update quality_man set quality_man_pwd = #{password} where quality_man_id = #{id}
+    </update>
+    <select id="selectQualityMen" resultType="com.ye.warehouse.entity.QualityMan">
+        select <include refid="selectQM"></include>
+        from quality_man
+        where quality_man_status = #{status}
+    </select>
+
+
+
+<!-- 仓库管理员操作相关-->
+    <sql id="selectWM">
+        warehouse_manager_id, warehouse_manager_pwd, warehouse_manager_name, warehouse_manager_header, warehouse_manager_status, warehouse_manager_tel
+    </sql>
+    <sql id="insertWM">
+         warehouse_manager_pwd, warehouse_manager_name, warehouse_manager_header, warehouse_manager_status, warehouse_manager_tel
+    </sql>
+    <select id="selectWarehouseManagerById" resultType="com.ye.warehouse.entity.WarehouseManager">
+        select <include refid="selectWM"></include>
+        from warehouse_manager
+        where warehouse_manager_id = #{id}
+    </select>
+    <select id="selectWarehouseManagerByName" resultType="com.ye.warehouse.entity.WarehouseManager">
+        select <include refid="selectWM"></include>
+        from warehouse_manager
+        where warehouse_manager_name = #{username}
+    </select>
+    <select id="selectWarehouseManagerByTel" resultType="com.ye.warehouse.entity.WarehouseManager">
+        select <include refid="selectWM"></include>
+        from warehouse_manager
+        where warehouse_manager_tel = #{tel}
+    </select>
+    <insert id="insertWarehouseManager" parameterType="com.ye.warehouse.entity.WarehouseManager" keyProperty="warehouseManagerId">
+        insert into warehouse_manager (<include refid="insertWM"></include>)
+        values(#{warehouseManagerPwd}, #{warehouseManagerName}, #{warehouseManagerHeader}, #{warehouseManagerStatus}, #{warehouseManagerTel})
+    </insert>
+    <update id="updateWarehouseManagerStatus">
+        update warehouse_manager set warehouse_manager_status = #{status} where warehouse_manager_id = #{id}
+    </update>
+    <update id="updateWarehouseManagerHeader">
+        update warehouse_manager set warehouse_manager_header = #{headerUrl} where warehouse_manager_id = #{id}
+    </update>
+    <update id="updateWarehouseManagerPassword">
+        update warehouse_manager set warehouse_manager_pwd = #{password} where warehouse_manager_id = #{id}
+    </update>
+    <select id="selectWarehouseManagers" resultType="com.ye.warehouse.entity.WarehouseManager">
+        select <include refid="selectWM"></include>
+        from warehouse_manager
+        where warehouse_manager_status = #{status}
+    </select>
+</mapper>

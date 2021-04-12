@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.EquipmentTypeMapper">
+
+    <sql id="select">
+        equipment_category_id, equipment_category_name, equipment_category_picture, equipment_category_status
+    </sql>
+    <sql id="insert">
+        equipment_category_name, equipment_category_picture, equipment_category_status
+    </sql>
+    <insert id="insertEquipmentType" keyProperty="equipmentCategoryId">
+        insert  into equipment_category(<include refid="insert"></include>)
+        values (#{equipmentCategoryName}, #{equipmentCategoryPicture}, #{equipmentCategoryStatus})
+    </insert>
+    <select id="selectEquipmentTypeById" resultType="com.ye.warehouse.entity.EquipmentCategory">
+        select <include refid="select"></include>
+        from equipment_category
+        where equipment_category_id = #{id}
+    </select>
+    <update id="updatePicture">
+        update equipment_category
+        set equipment_category_picture = #{url}
+        where equipment_category_id = #{id}
+    </update>
+
+    <update id="updateName">
+        update equipment_category
+        set equipment_category_name = #{name}
+        where equipment_category_id = #{id}
+    </update>
+
+
+    <delete id="updateStatus">
+        update equipment_category
+        set equipment_category_status = #{status}
+        where equipment_category_id = #{id}
+    </delete>
+
+    <select id="getEquipmentTypes" resultType="com.ye.warehouse.entity.EquipmentCategory">
+        select <include refid="select"></include>
+        from equipment_category
+        where equipment_category_status = 1
+        limit #{offset}, #{limit}
+    </select>
+    <select id="getAllEquipmentsTypes" resultType="com.ye.warehouse.entity.EquipmentCategory">
+        select <include refid="select"></include>
+        from equipment_category
+        where equipment_category_status = 1
+    </select>
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.GoodsHouseRecordMapper">
+    <sql id="insert">
+        goods_id, in_time, warehouse_manager_in_id
+    </sql>
+
+    <sql id="select">
+        goods_id, in_time, warehouse_manager_in_id, out_time, warehouse_manager_out_id
+    </sql>
+    <insert id="insertRecord" >
+        insert into goods_house_record(<include refid="insert"></include>)
+        values (#{goodsId}, #{inTime}, #{warehouseManagerInId})
+    </insert>
+    <update id="updateRecordOutResult">
+        update goods_house_record
+        set out_time = #{time}, warehouse_manager_out_id = #{wmId}
+        where goods_id = #{id}
+    </update>
+    <select id="getRecordById" resultType="com.ye.warehouse.entity.GoodsHouseRecord">
+        select <include refid="select"></include>
+        from goods_house_record
+        where goods_id = #{id}
+    </select>
+
+</mapper>

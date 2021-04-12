@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/Site.css}" />
+    <link rel="stylesheet" th:href="@{/css/zy.all.css}" />
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/amazeui.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+    <style>
+
+    </style>
+<body>
+<div class="dvcontent">
+
+    <div>
+        <!--tab start-->
+        <div class="tabs">
+            <div class="hd">
+                <ul style="">
+                    <li style="box-sizing: initial;-webkit-box-sizing: initial;" class="on">入库申请</li>
+
+                </ul>
+            </div>
+            <div class="bd">
+                <ul class="theme-popbod dform"style="display: block;padding: 20px;">
+                        <li>
+                            <!--分页显示角色信息 start-->
+                            <div >
+                                <table class="table" >
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>类别</th>
+                                        <th>申请</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="list:${list}">
+                                        <td th:text="${listStat.index}+1">1</td>
+                                        <td th:text="${list.goodsCategoryName}">肉类</td>
+                                        <td>
+                                            <span>
+                                                <form th:action="@{/GM/inApply}" method="post">
+                                                    <input type="text" name="count" placeholder="数量">
+                                                    <input type="text" style="display: none" name="goodsType" th:value="${list.goodsCategoryId}">
+                                            <button class="btn btn-primary">
+                                                <span class="iconfont icon-search">
+                                                    申请
+                                                </span>
+                                            </button>
+                                                </form>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <!--分页显示角色信息 end-->
+                        </li>
+                    <nav class="mt-5" th:if="${page.rows>0}" th:fragment="pagination">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" th:href="@{${page.path}(current=1)}">首页</a>
+                            </li>
+                            <li th:class="|page-item ${page.current==1?'disabled':''}|">
+                                <a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
+                            <li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
+                                <a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
+                            </li>
+                            <li th:class="|page-item ${page.current==page.total?'disabled':''}|">
+                                <a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" th:href="@{${page.path}(current=${page.total})}">末页</a>
+                            </li>
+                        </ul>
+                    </nav>
+            </div>
+            </ul>
+            </div>
+
+            <!--tab end-->
+
+        </div>
+
+        <script th:src="@{/js/jquery-1.7.2.min.js}" type="text/javascript"></script>
+        <script th:src="@{/js/plugs/Jqueryplugs.js}" type="text/javascript"></script>
+        <script th:src="@{/js/_layout.js}"></script>
+        <script th:src="@{/js/plugs/jquery.SuperSlide.source.js}"></script>
+
+        <script>
+            var num = 1;
+            $(function() {
+
+                $(".tabs").slide({ trigger: "click" });
+
+            });
+
+        </script>
+
+    </div>
+
+    <script th:inline="javascript" >
+        var msg = [[${msg}]]
+        if (msg != null){
+            alert(msg);
+        }
+    </script>
+
+
+</body>
+
+</html>

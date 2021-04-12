@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ye.warehouse.dao.EquipmentRecordMapper">
+    <sql id="insert">
+        equipment_id, buy_time, warehouse_manager_buy_id
+    </sql>
+    <sql id="select">
+        equipment_id, buy_time, destroy_time, warehouse_manager_buy_id, warehouse_manager_destroy_id
+    </sql>
+    <insert id="addRecord">
+        insert into equipment_record(<include refid="insert"></include>)
+        values (#{equipmentId}, #{buyTime}, #{warehouseManagerBuyId})
+    </insert>
+    <update id="updateRecord">
+        update equipment_record
+        set destroy_time = #{destroyTime}, warehouse_manager_destroy_id = #{wmId}
+        where equipment_id = #{id}
+    </update>
+    <select id="selectRecord" resultType="com.ye.warehouse.entity.EquipmentRecord">
+        select <include refid="select"></include>
+        from equipment_record
+        where equipment_id = #{id}
+    </select>
+
+
+</mapper>
