@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" />
-    <link rel="stylesheet" th:href="@{/css/Site.css}" />
-    <link rel="stylesheet" th:href="@{/css/zy.all.css}" />
-    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" />
-    <link rel="stylesheet" th:href="@{/css/amazeui.min.css}" />
-    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+    <link rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/Site.css}"/>
+    <link rel="stylesheet" th:href="@{/css/zy.all.css}"/>
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/amazeui.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/admin.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          crossorigin="anonymous">
+
     <style>
 
     </style>
@@ -27,10 +30,22 @@
             </div>
             <div class="bd">
                 <ul style="display: block;padding: 20px;">
-                    <div class="row">
-                        <label  class="am-u-sm-2 am-form-label">
-                            职位</label>
-                        <form class="am-u-sm-3" style="text-align:center" th:action="@{/SM/getPeople}" method="get">
+                    <label class="am-u-sm-2 am-form-label">
+                        职位</label>
+                    <div class="form-inline">
+                        <form class="am-u-sm-5" style="text-align:center" th:action="@{/SM/getPeople}" method="get">
+                            <span th:if="${status}==1">
+                                <select name="status" class="form-control">
+                                    <option value=1 selected="selected">在职</option>
+                                    <option value=0>离职</option>
+                                </select>
+                            </span>
+                            <span th:if="${status}==0">
+                                <select name="status" class="form-control">
+                                    <option value=1>在职</option>
+                                    <option value=0 selected="selected">离职</option>
+                                </select>
+                            </span>
                             <span th:if="${type}==1">
                                 <select name="type" class="form-control">
                                     <option value=1 selected="selected">商品运输员</option>
@@ -40,15 +55,15 @@
                             </span>
                             <span th:if="${type}==2">
                                 <select name="type" class="form-control">
-                                    <option value=1 >商品运输员</option>
+                                    <option value=1>商品运输员</option>
                                     <option value=2 selected="selected">质检员</option>
                                     <option value=3>仓库管理员</option>
                                 </select>
                             </span>
                             <span th:if="${type}==3">
                                 <select name="type" class="form-control">
-                                    <option value=1 >商品运输员</option>
-                                    <option value=2 >质检员</option>
+                                    <option value=1>商品运输员</option>
+                                    <option value=2>质检员</option>
                                     <option value=3 selected="selected">仓库管理员</option>
                                 </select>
                             </span>
@@ -58,6 +73,7 @@
                                 </span>
                             </button>
                         </form>
+                    </div>
                     <li>
                         <!--分页显示角色信息 start-->
                         <div id="dv1">
@@ -69,7 +85,7 @@
                                     <th>昵称</th>
                                     <th>电话</th>
                                     <th>头像</th>
-                                    <th>操作</th>
+                                    <th th:if="${status==1}">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -80,14 +96,16 @@
                                     </td>
                                     <td th:text="${list.goodsManTel}">肉类
                                     </td>
-                                    <td  class="edit" name="id" style="display:none;" th:text="${list.goodsManId}">肉类
+                                    <td class="edit" name="id" style="display:none;" th:text="${list.goodsManId}">肉类
                                     </td>
                                     <td>
                                         <img th:src="${list.goodsManHeader}" style="width:40px;">
                                     </td>
-                                    <td class="edit">
+                                    <td class="edit" th:if="${status==1}">
 
-                                        <a  class="button" href="javascript:void(0);" th:onclick="btn_delete([[${list.goodsManId}]],[[${type}]])"><i class="icon-trash bigger-120"></i>删除</a>
+                                        <a class="button" href="javascript:void(0);"
+                                           th:onclick="btn_delete([[${list.goodsManId}]],[[${type}]],[[${status}]])"><i
+                                                class="icon-trash bigger-120"></i>删除</a>
 
                                     </td>
                                 </tr>
@@ -99,14 +117,17 @@
                                     </td>
                                     <td th:text="${list.qualityManTel}">肉类
                                     </td>
-                                    <td  class="edit" name="id" style="display:none;" th:text="${list.qualityManId}">肉类
+                                    <td class="edit" name="id" style="display:none;" th:text="${list.qualityManId}">
+                                        肉类
                                     </td>
                                     <td>
                                         <img th:src="${list.qualityManHeader}" style="width:40px;">
                                     </td>
-                                    <td class="edit">
+                                    <td class="edit" th:if="${status==1}">
 
-                                        <a  class="button" href="javascript:void(0);" th:onclick="btn_delete([[${list.qualityManId}]],[[${type}]])"><i class="icon-trash bigger-120"></i>删除</a>
+                                        <a class="button" href="javascript:void(0);"
+                                           th:onclick="btn_delete([[${list.qualityManId}]],[[${type}]],[[${status}]])"><i
+                                                class="icon-trash bigger-120"></i>删除</a>
 
                                     </td>
                                 </tr>
@@ -118,14 +139,17 @@
                                     </td>
                                     <td th:text="${list.warehouseManagerTel}">肉类
                                     </td>
-                                    <td  class="edit" name="id" style="display:none;" th:text="${list.warehouseManagerId}">肉类
+                                    <td class="edit" name="id" style="display:none;"
+                                        th:text="${list.warehouseManagerId}">肉类
                                     </td>
                                     <td>
                                         <img th:src="${list.warehouseManagerHeader}" style="width:40px;">
                                     </td>
-                                    <td class="edit">
+                                    <td class="edit" th:if="${status==1}">
 
-                                        <a  class="button" href="javascript:void(0);" th:onclick="btn_delete([[${list.warehouseManagerId}]],[[${type}]])"><i class="icon-trash bigger-120"></i>注销</a>
+                                        <a class="button" href="javascript:void(0);"
+                                           th:onclick="btn_delete([[${list.warehouseManagerId}]],[[${type}]],[[${status}]])"><i
+                                                class="icon-trash bigger-120" ></i>删除</a>
 
                                     </td>
                                 </tr>
@@ -134,7 +158,10 @@
                             </table>
                         </div>
                         <!--分页显示角色信息 end-->
+
                     </li>
+                    <nav class="mt-5" th:replace="in_apply::pagination">
+                    </nav>
                 </ul>
                 <ul class="theme-popbod dform" style="display: none;">
                     <div class="am-cf admin-main" style="padding-top: 0px;">
@@ -155,25 +182,25 @@
                                                   th:action="@{/SM/addPeople}" method="post">
                                                 <div class="am-form-group">
                                                     <div class="am-form-group">
-                                                        <label  class="am-u-sm-3 am-form-label">
+                                                        <label class="am-u-sm-3 am-form-label">
                                                             职位</label>
                                                         <div class="am-u-sm-9">
-                                                            <select name="type" class="form-control">
+                                                            <select name="type" class="">
                                                                 <option value=1>商品运输员</option>
                                                                 <option value=2>质检员</option>
                                                                 <option value=3>仓库管理员</option>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                <div class="am-form-group">
-                                                    <label for="user-name" class="am-u-sm-3 am-form-label">
-                                                        昵称</label>
-                                                    <div class="am-u-sm-9">
-                                                        <input type="text" id="user-name" required
-                                                               placeholder="人员昵称" name="name">
-                                                        <small>10字以内...</small>
+                                                    <div class="am-form-group">
+                                                        <label for="user-name" class="am-u-sm-3 am-form-label">
+                                                            昵称</label>
+                                                        <div class="am-u-sm-9">
+                                                            <input type="text" id="user-name" required
+                                                                   placeholder="人员昵称" name="name">
+                                                            <small>10字以内...</small>
+                                                        </div>
                                                     </div>
-                                                </div>
                                                     <div class="am-form-group">
                                                         <label for="user-name" class="am-u-sm-3 am-form-label">
                                                             电话</label>
@@ -182,20 +209,21 @@
                                                                    placeholder="人员电话" name="tel">
                                                         </div>
                                                     </div>
-                                                <div class="am-form-group">
-                                                    <label for="user-name" class="am-u-sm-3 am-form-label">
-                                                        密码</label>
-                                                    <div class="am-u-sm-9">
-                                                        <input type="text" id="user-pwd" required
-                                                               placeholder="初始密码" name="password">
+                                                    <div class="am-form-group">
+                                                        <label for="user-name" class="am-u-sm-3 am-form-label">
+                                                            密码</label>
+                                                        <div class="am-u-sm-9">
+                                                            <input type="text" id="user-pwd" required
+                                                                   placeholder="初始密码" name="password">
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="am-form-group">
-                                                    <div class="am-u-sm-9 am-u-sm-push-3">
-                                                        <input type="submit" class="am-btn am-btn-success" value="添加人员" />
+                                                    <div class="am-form-group">
+                                                        <div class="am-u-sm-9 am-u-sm-push-3">
+                                                            <input type="submit" class="am-btn am-btn-success"
+                                                                   value="添加人员"/>
+                                                        </div>
                                                     </div>
-                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -204,6 +232,7 @@
                             </div>
                             <!-- content end -->
                         </div>
+
                         <!-- end-->
                 </ul>
             </div>
@@ -219,9 +248,9 @@
 
     <script>
         var num = 1;
-        $(function() {
+        $(function () {
 
-            $(".tabs").slide({ trigger: "click" });
+            $(".tabs").slide({trigger: "click"});
 
         });
 
@@ -229,9 +258,9 @@
 
 </div>
 
-<script th:inline="javascript" >
+<script th:inline="javascript">
     var msg = [[${msg}]]
-    if (msg != null){
+    if (msg != null) {
         alert(msg);
         // parent.location.reload();
         //window.location.href("https://www.runoob.com/w3cnote/js-redirect-to-another-webpage.html");
@@ -243,13 +272,14 @@
         var text = prompt('修改名称', name);
         if (text != null && text !== '' && text !== name) {
             alert("修改成功");
-            window.location.href="updateGoodsTypeName?id=" + id + "&name=" + text;
+            window.location.href = "updateGoodsTypeName?id=" + id + "&name=" + text;
         }
 
     }
-    var btn_delete = function (id, type) {
+
+    var btn_delete = function (id, type, status) {
         if (window.confirm("确认注销？")) {
-            window.location.href = "deletePeople?userId=" + id + "&type=" + type;
+            window.location.href = "deletePeople?userId=" + id + "&type=" + type + "&status=" + status;
         }
     }
 

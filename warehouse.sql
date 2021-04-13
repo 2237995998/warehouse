@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80021
 File Encoding         : 65001
 
-Date: 2021-04-12 22:11:46
+Date: 2021-04-13 10:39:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -204,7 +204,7 @@ CREATE TABLE `goods_category` (
   `goods_category_picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `goods_category_status` int NOT NULL,
   PRIMARY KEY (`goods_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods_category
@@ -215,6 +215,7 @@ INSERT INTO `goods_category` VALUES ('6', '电视机', 'http://localhost:8080/wa
 INSERT INTO `goods_category` VALUES ('7', '就将计就计', 'http://localhost:8080/warehouse/SM/goodsPicture/42715ef479d54006b3bd8f671b1dee08.png', '0');
 INSERT INTO `goods_category` VALUES ('8', '空调', 'http://localhost:8080/warehouse/SM/goodsPicture/fe7d9167d2c84899ab42c082aaebe0f8.png', '1');
 INSERT INTO `goods_category` VALUES ('9', 'ce', 'http://localhost:8080/warehouse/SM/goodsPicture/13caa33bf8684dd8bb03867cc4e6ecd9.png', '1');
+INSERT INTO `goods_category` VALUES ('10', 'tx', 'http://localhost:8080/warehouse/SM/goodsPicture/678b3a834c754ebba88b450ea9b9ddce.png', '1');
 
 -- ----------------------------
 -- Table structure for goods_house_record
@@ -256,14 +257,16 @@ CREATE TABLE `goods_man` (
   `goods_man_status` int NOT NULL,
   `goods_man_tel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`goods_man_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods_man
 -- ----------------------------
 INSERT INTO `goods_man` VALUES ('1', '1', '测试商品运输员', 'http://localhost:8080/warehouse/header/e681897e06bb4c94a18adb2a85140848.png', '1', '123555');
 INSERT INTO `goods_man` VALUES ('8', '123', '运输', 'http://localhost:8080/warehouse/header/f3bbafb3203742109e55afe834fc2e83.jpg', '1', '135454');
-INSERT INTO `goods_man` VALUES ('9', '666', '甲方', 'http://localhost:8080/warehouse/header/4.png', '1', '133345');
+INSERT INTO `goods_man` VALUES ('9', '666', '甲方', 'http://localhost:8080/warehouse/header/4.png', '0', '133345');
+INSERT INTO `goods_man` VALUES ('10', '123', 'wang', 'http://localhost:8080/warehouse/header/1.png', '1', '135666');
+INSERT INTO `goods_man` VALUES ('11', '123', 'zhao', 'http://localhost:8080/warehouse/header/5.png', '1', '123456');
 
 -- ----------------------------
 -- Table structure for goods_quality_record

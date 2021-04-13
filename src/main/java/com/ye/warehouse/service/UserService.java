@@ -219,32 +219,66 @@ public class UserService {
     }
 
     /**
-     * 查找某一状态下的商品运输员
+     * 分页查找某一状态下的商品运输员
      * @param status 状态
+     * @param offset
+     * @param limit
      * @return
      */
-    public List<GoodsMan> selectGoodsMen(int status) {
-        return userMapper.selectGoodsMen(status);
+    public List<GoodsMan> selectGoodsMen(int status, int offset, int limit) {
+        return userMapper.selectGoodsMen(status, offset, limit);
     }
 
     /**
-     * 查找某一状态下的质检员
+     * 查找某一状态下的商品运输员数量
      * @param status 状态
      * @return
      */
-    public List<QualityMan> selectQualityMen(int status) {
-        return userMapper.selectQualityMen(status);
+    public int selectGoodsMenCount(int status) {
+        List<GoodsMan> goodsManList = userMapper.selectGoodsMen(status, 0, 0);
+        return goodsManList.size();
     }
 
     /**
-     * 查找某一状态下的仓库管理员
+     * 分页查找某一状态下的质检员
+     * @param status 状态
+     * @param offset
+     * @param limit
+     * @return
+     */
+    public List<QualityMan> selectQualityMen(int status, int offset, int limit) {
+        return userMapper.selectQualityMen(status, offset, limit);
+    }
+
+    /**
+     * 查找某一状态下的质检员数量
      * @param status 状态
      * @return
      */
-    public List<WarehouseManager> selectWarehouseManagers(int status) {
-        return userMapper.selectWarehouseManagers(status);
+    public int selectQualityMenCount(int status) {
+        List<QualityMan> qualityManList = userMapper.selectQualityMen(status, 0, 0);
+        return qualityManList.size();
     }
 
+    /**
+     * 分页查找某一状态下的仓库管理员
+     * @param status 状态
+     * @param offset
+     * @param limit
+     * @return
+     */
+    public List<WarehouseManager> selectWarehouseManagers(int status, int offset, int limit) {
+        return userMapper.selectWarehouseManagers(status, offset, limit);
+    }
+    /**
+     * 查找某一状态下的仓库管理员数量
+     * @param status 状态
+     * @return
+     */
+    public int selectWarehouseManagersCount(int status) {
+        List<WarehouseManager> warehouseManagerList = userMapper.selectWarehouseManagers(status, 0, 0);
+        return warehouseManagerList.size();
+    }
     /**
      * 添加人员
      * @param userName  人员名称

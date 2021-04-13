@@ -213,22 +213,23 @@ public class SystemManagerController {
      * @return
      */
     @RequestMapping(path = "/getPeople", method = RequestMethod.GET)
-    public String getPeople(Model model, int type, Page page) {
-        page.setPath("/SM/getPeople");
+    public String getPeople(Model model, int type, int status, Page page) {
+        page.setPath("/SM/getPeople?type=" + type + "&status=" + status);
         if (type == 1) {
-            List<GoodsMan> goodsManList = userService.selectGoodsMen(1);
-            page.setRows(goodsManList.size());
+            List<GoodsMan> goodsManList = userService.selectGoodsMen(status, page.getOffset(), page.getLimit());
+            page.setRows(userService.selectGoodsMenCount(status));
             model.addAttribute("list", goodsManList);
         } else if (type == 2) {
-            List<QualityMan> qualityManList = userService.selectQualityMen(1);
-            page.setRows(qualityManList.size());
+            List<QualityMan> qualityManList = userService.selectQualityMen(status, page.getOffset(), page.getLimit());
+            page.setRows(userService.selectQualityMenCount(status));
             model.addAttribute("list", qualityManList);
         } else if (type == 3) {
-            List<WarehouseManager> warehouseManagerList = userService.selectWarehouseManagers(1);
-            page.setRows(warehouseManagerList.size());
+            List<WarehouseManager> warehouseManagerList = userService.selectWarehouseManagers(status, page.getOffset(), page.getLimit());
+            page.setRows(userService.selectWarehouseManagersCount(status));
             model.addAttribute("list", warehouseManagerList);
         }
         model.addAttribute("type", type);
+        model.addAttribute("status", status);
         return "/people";
     }
 
@@ -252,7 +253,7 @@ public class SystemManagerController {
         } else {
             model.addAttribute("msg", "恭喜添加成功，该人员的账号为" + map.get("id") + "    请牢记，该账号将用于登录使用");
         }
-        return getPeople(model, type, page);
+        return getPeople(model, type, 1, page);
     }
 
     /**
@@ -265,9 +266,9 @@ public class SystemManagerController {
      * @return
      */
     @RequestMapping(path = "/deletePeople", method = RequestMethod.GET)
-    public String deletePeople(Model model, int userId, int type, Page page) {
+    public String deletePeople(Model model, int userId, int type, int status, Page page) {
         userService.deletePeople(userId, 0, type);
-        return getPeople(model, type, page);
+        return getPeople(model, type, status, page);
     }
 
     /**

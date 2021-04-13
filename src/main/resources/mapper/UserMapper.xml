@@ -80,6 +80,10 @@
         select <include refid="selectGM"></include>
         from goods_man
         where goods_man_status = #{status}
+        <if test="limit!=0">
+            limit #{offset}, #{limit}
+        </if>
+
     </select>
 
 
@@ -122,6 +126,9 @@
         select <include refid="selectQM"></include>
         from quality_man
         where quality_man_status = #{status}
+        <if test="limit!=0">
+            limit #{offset}, #{limit}
+        </if>
     </select>
 
 
@@ -165,5 +172,9 @@
         select <include refid="selectWM"></include>
         from warehouse_manager
         where warehouse_manager_status = #{status}
+        <if test="limit!=0">
+            limit #{offset}, #{limit}
+        </if>
     </select>
+
 </mapper>

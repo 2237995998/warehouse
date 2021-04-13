@@ -52,7 +52,7 @@ public interface UserMapper {
 
     int updateGoodsManPassword(int id, String password);
 
-    List<GoodsMan> selectGoodsMen(int status);
+    List<GoodsMan> selectGoodsMen(int status, int offset, int limit);
 
 
     /**
@@ -72,7 +72,7 @@ public interface UserMapper {
 
     int updateQualityManPassword(int id, String password);
 
-    List<QualityMan> selectQualityMen(int status);
+    List<QualityMan> selectQualityMen(int status, int offset, int limit);
 
 
 
@@ -93,5 +93,5 @@ public interface UserMapper {
 
     int updateWarehouseManagerPassword(int id, String password);
 
-    List<WarehouseManager> selectWarehouseManagers(int status);
+    List<WarehouseManager> selectWarehouseManagers(int status, int offset, int limit);
 }
