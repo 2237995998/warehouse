@@ -49,8 +49,6 @@ public class WarehouseManagerController {
     @Value("${warehouse.path.upload.equipmentPicture}")
     private String equipmentTypePictureUpload;
 
-    @Value("${warehouse.path.domain}")
-    private String domain;
 
     @Value("${server.servlet.context-path}")
     private String contextPath;
@@ -122,7 +120,7 @@ public class WarehouseManagerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String url = domain + contextPath + "/WM/equipmentPicture/" + fileName;
+        String url = contextPath + "/WM/equipmentPicture/" + fileName;
         equipmentCategoryService.updatePicture(equipmentTypeId, url);
         model.addAttribute("msg", "更换成功");
         return getEquipmentTypes(model, page);
@@ -154,7 +152,7 @@ public class WarehouseManagerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String url = domain + contextPath + "/WM/equipmentPicture/" + fileName;
+        String url = contextPath + "/WM/equipmentPicture/" + fileName;
         EquipmentCategory equipmentCategory = new EquipmentCategory();
         equipmentCategory.setEquipmentCategoryPicture(url);
         equipmentCategory.setEquipmentCategoryName(name);
@@ -383,8 +381,11 @@ public class WarehouseManagerController {
     @RequestMapping(value = "/inHouse", method = RequestMethod.GET)
     public String inHouse(int goodsId, int location, Model model, HttpSession session, Page page){
         List<Goods> goodsList = goodsService.getAllGoods(-1, 4, page.getOffset(), page.getLimit());
+        List<Goods> goodsList1 = goodsService.getAllGoods(-1, 5, page.getOffset(), page.getLimit());
+        List<Goods> goodsList2 = goodsService.getAllGoods(-1, 6, page.getOffset(), page.getLimit());
+        goodsList.addAll(goodsList1);
+        goodsList.addAll(goodsList2);
         for (Goods goods : goodsList) {
-            System.out.println(goods.getGoodsLocation());
             if (location == goods.getGoodsLocation()){
                 model.addAttribute("msg", "入库失败,该位置已经存放商品！");
                 return handleInHouse(model, page);

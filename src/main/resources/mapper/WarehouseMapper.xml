@@ -6,7 +6,7 @@
 
 
     <select id="selectWarehouse" resultType="com.ye.warehouse.entity.Warehouse">
-        select warehouse_id, usable_capacity, total_capacity, system_manager_id
+        select warehouse_id, usable_capacity, total_capacity, use_capacity, system_manager_id
         from warehouse
         where warehouse_id = #{wid}
     </select>

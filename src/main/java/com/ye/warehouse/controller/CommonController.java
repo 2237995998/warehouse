@@ -8,6 +8,7 @@ import com.ye.warehouse.entity.WarehouseManager;
 import com.ye.warehouse.service.UserService;
 import com.ye.warehouse.util.StringUtil;
 import com.ye.warehouse.util.UserUtil;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -33,11 +34,16 @@ public class CommonController {
     @Value("${warehouse.path.upload.header}")
     private String headerUpload;
 
-    @Value("${warehouse.path.domain}")
-    private String domain;
 
     @Value("${server.servlet.context-path}")
     private String contextPath;
+
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @ResponseBody
+    public String test(){
+        System.out.println("ssss");
+        return "成功!!!";
+    }
 
     /**
      * 前往登录界面
@@ -157,7 +163,7 @@ public class CommonController {
             e.printStackTrace();
             throw new RuntimeException("文件上传失败", e);
         }
-        String headerUrl =  domain + contextPath + "/header/" + fileName;
+        String headerUrl =  contextPath + "/header/" + fileName;
         int role = (int) session.getAttribute("role");
         int id = UserUtil.getId(session.getAttribute("user"), role);
         userService.updateHeader(id, headerUrl, role);

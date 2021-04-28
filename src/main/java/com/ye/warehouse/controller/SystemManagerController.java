@@ -49,10 +49,6 @@ public class SystemManagerController {
     @Value("${warehouse.path.upload.goodsPicture}")
     private String goodsTypePictureUpload;
 
-
-    @Value("${warehouse.path.domain}")
-    private String domain;
-
     @Value("${server.servlet.context-path}")
     private String contextPath;
 
@@ -99,7 +95,7 @@ public class SystemManagerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String url = domain + contextPath + "/SM/goodsPicture/" + fileName;
+        String url = contextPath + "/SM/goodsPicture/" + fileName;
         GoodsCategory goodsCategory = new GoodsCategory();
         goodsCategory.setGoodsCategoryPicture(url);
         goodsCategory.setGoodsCategoryName(name);
@@ -182,7 +178,7 @@ public class SystemManagerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String url = domain + contextPath+ "/SM/goodsPicture/" + fileName;
+        String url = contextPath+ "/SM/goodsPicture/" + fileName;
         goodsCategoryService.updateGoodsTypePicture(goodsTypeId, url);
         model.addAttribute("msg", "更换成功");
         return getGoodsTypes(model, page);
@@ -230,6 +226,7 @@ public class SystemManagerController {
         }
         model.addAttribute("type", type);
         model.addAttribute("status", status);
+
         return "/people";
     }
 
@@ -305,7 +302,6 @@ public class SystemManagerController {
      */
     @RequestMapping(path = "/getCapacity", method = RequestMethod.GET)
     public String getCapacity(Model model) {
-        int count = goodsService.getOnGoodsCount(-1);
         Warehouse warehouse = wareHouseService.getWarehouse(1);
         List<Map<String, Object>> list = new ArrayList<>();
         Map<String, Object> map = new HashMap<>();
@@ -317,12 +313,12 @@ public class SystemManagerController {
         map2.put("number", warehouse.getUsableCapacity());
         list.add(1, map2);
         Map<String, Object> map3 = new HashMap<>();
-        map3.put("type", "已用容量");
-        map3.put("number", count);
+        map3.put("type", "已占用容量");
+        map3.put("number", warehouse.getUseCapacity());
         list.add(2, map3);
         Map<String, Object> map4 = new HashMap<>();
         map4.put("type", "剩余容量");
-        map4.put("number", warehouse.getUsableCapacity() - count);
+        map4.put("number", warehouse.getUsableCapacity() - warehouse.getUseCapacity());
         list.add(3, map4);
         model.addAttribute("list", list);
         return "/capacity";

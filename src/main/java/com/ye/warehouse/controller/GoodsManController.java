@@ -82,7 +82,7 @@ public class GoodsManController {
     public String inApply(int count, int goodsType, Model model, HttpSession session, Page page){
         GoodsMan goodsMan = (GoodsMan)session.getAttribute("user");
         boolean flag = true;
-        int use = goodsService.getOnGoodsCount(-1);
+        int use = wareHouseService.getWarehouse(1).getUseCapacity();
         int usable = wareHouseService.getWarehouse(1).getUsableCapacity();
         if (usable < (count - use)){
             model.addAttribute("msg", "库存容量不足！申请失败");

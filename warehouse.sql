@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80021
 File Encoding         : 65001
 
-Date: 2021-04-13 10:39:42
+Date: 2021-04-28 10:08:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,10 +52,10 @@ CREATE TABLE `equipment_category` (
 -- ----------------------------
 -- Records of equipment_category
 -- ----------------------------
-INSERT INTO `equipment_category` VALUES ('2', '消防栓', 'http://localhost:8080/warehouse/WM/equipmentPicture/772eb75f2221416badcb0254d4765aec.png', '1');
-INSERT INTO `equipment_category` VALUES ('3', '灭火器A型', 'http://localhost:8080/warehouse/WM/equipmentPicture/3124f430d7aa4e639e133fb47c52c246.png', '1');
-INSERT INTO `equipment_category` VALUES ('4', '灭火器B型', 'http://localhost:8080/warehouse/WM/equipmentPicture/ac2927f04d9c4dbda4d2d9b0842f5a67.png', '1');
-INSERT INTO `equipment_category` VALUES ('5', '222', 'http://localhost:8080/warehouse/WM/equipmentPicture/2d42bb1eeab043e685b74e855ce437cc.png', '1');
+INSERT INTO `equipment_category` VALUES ('2', '消防栓', '/warehouse/WM/equipmentPicture/772eb75f2221416badcb0254d4765aec.png', '1');
+INSERT INTO `equipment_category` VALUES ('3', '灭火器A型', '/warehouse/WM/equipmentPicture/3124f430d7aa4e639e133fb47c52c246.png', '1');
+INSERT INTO `equipment_category` VALUES ('4', '灭火器B型', '/warehouse/WM/equipmentPicture/ac2927f04d9c4dbda4d2d9b0842f5a67.png', '1');
+INSERT INTO `equipment_category` VALUES ('5', '222', '/warehouse/WM/equipmentPicture/2d42bb1eeab043e685b74e855ce437cc.png', '1');
 
 -- ----------------------------
 -- Table structure for equipment_record
@@ -96,46 +96,61 @@ CREATE TABLE `goods` (
   PRIMARY KEY (`goods_id`),
   KEY `gc_id_con` (`goods_category_id`),
   CONSTRAINT `gc_id_con` FOREIGN KEY (`goods_category_id`) REFERENCES `goods_category` (`goods_category_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES ('1', '4', '1', '4');
-INSERT INTO `goods` VALUES ('2', '2', '5', null);
+INSERT INTO `goods` VALUES ('1', '4', '1', '112');
+INSERT INTO `goods` VALUES ('2', '4', '5', '20');
 INSERT INTO `goods` VALUES ('3', '3', '5', null);
-INSERT INTO `goods` VALUES ('4', '4', '5', '3');
-INSERT INTO `goods` VALUES ('5', '1', '5', null);
+INSERT INTO `goods` VALUES ('4', '5', '5', '3');
+INSERT INTO `goods` VALUES ('5', '4', '5', '11');
 INSERT INTO `goods` VALUES ('6', '3', '5', null);
-INSERT INTO `goods` VALUES ('7', '1', '5', null);
-INSERT INTO `goods` VALUES ('8', '1', '6', null);
-INSERT INTO `goods` VALUES ('9', '4', '6', '5');
-INSERT INTO `goods` VALUES ('10', '1', '6', null);
-INSERT INTO `goods` VALUES ('11', '1', '5', null);
+INSERT INTO `goods` VALUES ('7', '4', '5', '13');
+INSERT INTO `goods` VALUES ('8', '2', '6', null);
+INSERT INTO `goods` VALUES ('9', '5', '6', '5');
+INSERT INTO `goods` VALUES ('10', '5', '6', '16');
+INSERT INTO `goods` VALUES ('11', '2', '5', null);
 INSERT INTO `goods` VALUES ('12', '1', '5', null);
-INSERT INTO `goods` VALUES ('13', '1', '5', null);
-INSERT INTO `goods` VALUES ('14', '1', '5', null);
-INSERT INTO `goods` VALUES ('16', '1', '1', null);
-INSERT INTO `goods` VALUES ('17', '1', '1', null);
-INSERT INTO `goods` VALUES ('18', '1', '1', null);
-INSERT INTO `goods` VALUES ('19', '1', '1', null);
+INSERT INTO `goods` VALUES ('13', '8', '5', '0');
+INSERT INTO `goods` VALUES ('14', '4', '5', '12');
+INSERT INTO `goods` VALUES ('16', '3', '1', null);
+INSERT INTO `goods` VALUES ('17', '4', '1', '18');
+INSERT INTO `goods` VALUES ('18', '4', '1', '17');
+INSERT INTO `goods` VALUES ('19', '4', '1', '15');
 INSERT INTO `goods` VALUES ('20', '1', '1', null);
-INSERT INTO `goods` VALUES ('21', '4', '6', '4');
-INSERT INTO `goods` VALUES ('22', '6', '5', '10');
-INSERT INTO `goods` VALUES ('23', '2', '5', null);
-INSERT INTO `goods` VALUES ('24', '1', '1', null);
-INSERT INTO `goods` VALUES ('25', '1', '1', null);
+INSERT INTO `goods` VALUES ('21', '5', '6', '4');
+INSERT INTO `goods` VALUES ('22', '8', '5', '0');
+INSERT INTO `goods` VALUES ('23', '4', '5', '19');
+INSERT INTO `goods` VALUES ('24', '4', '1', '145');
+INSERT INTO `goods` VALUES ('25', '3', '1', null);
 INSERT INTO `goods` VALUES ('26', '1', '5', null);
-INSERT INTO `goods` VALUES ('27', '1', '5', null);
+INSERT INTO `goods` VALUES ('27', '2', '5', null);
 INSERT INTO `goods` VALUES ('28', '1', '6', null);
-INSERT INTO `goods` VALUES ('29', '1', '1', null);
+INSERT INTO `goods` VALUES ('29', '2', '1', null);
 INSERT INTO `goods` VALUES ('30', '1', '1', null);
-INSERT INTO `goods` VALUES ('31', '1', '1', null);
+INSERT INTO `goods` VALUES ('31', '2', '1', null);
 INSERT INTO `goods` VALUES ('32', '1', '1', null);
 INSERT INTO `goods` VALUES ('33', '1', '5', null);
 INSERT INTO `goods` VALUES ('34', '8', '5', '0');
-INSERT INTO `goods` VALUES ('35', '1', '5', null);
+INSERT INTO `goods` VALUES ('35', '3', '5', null);
 INSERT INTO `goods` VALUES ('36', '8', '9', '0');
+INSERT INTO `goods` VALUES ('37', '1', '1', null);
+INSERT INTO `goods` VALUES ('38', '1', '1', null);
+INSERT INTO `goods` VALUES ('39', '1', '1', null);
+INSERT INTO `goods` VALUES ('40', '1', '1', null);
+INSERT INTO `goods` VALUES ('41', '1', '5', null);
+INSERT INTO `goods` VALUES ('42', '3', '10', null);
+INSERT INTO `goods` VALUES ('43', '1', '6', null);
+INSERT INTO `goods` VALUES ('44', '1', '8', null);
+INSERT INTO `goods` VALUES ('45', '1', '8', null);
+INSERT INTO `goods` VALUES ('46', '1', '8', null);
+INSERT INTO `goods` VALUES ('47', '1', '5', null);
+INSERT INTO `goods` VALUES ('48', '1', '1', null);
+INSERT INTO `goods` VALUES ('49', '1', '8', null);
+INSERT INTO `goods` VALUES ('50', '1', '8', null);
+INSERT INTO `goods` VALUES ('51', '1', '8', null);
 
 -- ----------------------------
 -- Table structure for goods_apply_record
@@ -158,26 +173,26 @@ CREATE TABLE `goods_apply_record` (
 -- ----------------------------
 -- Records of goods_apply_record
 -- ----------------------------
-INSERT INTO `goods_apply_record` VALUES ('1', '2021-03-28 16:27:04', '2021-03-28 16:27:04', '1', null);
+INSERT INTO `goods_apply_record` VALUES ('1', '2021-03-28 16:27:04', '2021-04-17 15:25:26', '1', '1');
 INSERT INTO `goods_apply_record` VALUES ('2', '2021-03-28 16:27:04', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('3', '2021-03-28 16:27:04', '2021-03-30 17:22:09', '1', '1');
-INSERT INTO `goods_apply_record` VALUES ('4', '2021-03-28 16:27:04', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('4', '2021-03-28 16:27:04', '2021-04-16 12:43:38', '1', '1');
 INSERT INTO `goods_apply_record` VALUES ('5', '2021-03-28 16:27:04', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('6', '2021-03-28 16:27:04', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('7', '2021-03-28 16:27:04', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('8', '2021-03-28 16:27:41', null, '1', null);
-INSERT INTO `goods_apply_record` VALUES ('9', '2021-03-28 16:27:41', null, '1', null);
-INSERT INTO `goods_apply_record` VALUES ('10', '2021-03-28 16:27:41', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('9', '2021-03-28 16:27:41', '2021-04-16 11:44:56', '1', '1');
+INSERT INTO `goods_apply_record` VALUES ('10', '2021-03-28 16:27:41', '2021-04-17 18:26:58', '1', '1');
 INSERT INTO `goods_apply_record` VALUES ('11', '2021-03-28 16:28:00', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('12', '2021-03-28 16:28:00', null, '1', null);
-INSERT INTO `goods_apply_record` VALUES ('13', '2021-03-30 10:55:31', '2021-03-30 16:42:54', '1', '1');
+INSERT INTO `goods_apply_record` VALUES ('13', '2021-03-30 10:55:31', '2021-04-17 15:28:49', '1', '1');
 INSERT INTO `goods_apply_record` VALUES ('14', '2021-03-30 10:55:31', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('16', '2021-03-30 17:32:42', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('17', '2021-03-30 17:32:42', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('18', '2021-03-30 17:32:42', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('19', '2021-03-30 17:32:42', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('20', '2021-03-30 17:32:42', null, '1', null);
-INSERT INTO `goods_apply_record` VALUES ('21', '2021-03-31 17:42:25', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('21', '2021-03-31 17:42:25', '2021-04-16 11:41:43', '1', '1');
 INSERT INTO `goods_apply_record` VALUES ('22', '2021-03-31 17:53:19', '2021-04-01 14:48:06', '1', '1');
 INSERT INTO `goods_apply_record` VALUES ('23', '2021-03-31 17:53:19', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('24', '2021-04-01 14:22:24', null, '1', null);
@@ -193,6 +208,21 @@ INSERT INTO `goods_apply_record` VALUES ('33', '2021-04-01 14:49:08', null, '1',
 INSERT INTO `goods_apply_record` VALUES ('34', '2021-04-07 12:23:31', '2021-04-07 12:24:32', '1', '1');
 INSERT INTO `goods_apply_record` VALUES ('35', '2021-04-07 12:23:31', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('36', '2021-04-12 17:25:39', '2021-04-12 17:27:21', '1', '1');
+INSERT INTO `goods_apply_record` VALUES ('37', '2021-04-15 16:48:04', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('38', '2021-04-15 16:52:25', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('39', '2021-04-15 16:52:25', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('40', '2021-04-15 17:25:30', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('41', '2021-04-15 19:56:58', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('42', '2021-04-15 19:57:21', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('43', '2021-04-16 11:36:01', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('44', '2021-04-17 15:42:59', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('45', '2021-04-28 09:22:20', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('46', '2021-04-28 09:22:20', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('47', '2021-04-28 09:28:18', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('48', '2021-04-28 09:37:53', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('49', '2021-04-28 09:49:43', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('50', '2021-04-28 09:49:43', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('51', '2021-04-28 09:49:43', null, '1', null);
 
 -- ----------------------------
 -- Table structure for goods_category
@@ -204,18 +234,26 @@ CREATE TABLE `goods_category` (
   `goods_category_picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `goods_category_status` int NOT NULL,
   PRIMARY KEY (`goods_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods_category
 -- ----------------------------
-INSERT INTO `goods_category` VALUES ('1', '冰箱', 'http://localhost:8080/warehouse/SM/goodsPicture/10aed7afd9cf460eb6faead5d7556459.png', '1');
-INSERT INTO `goods_category` VALUES ('5', '洗衣机', 'http://localhost:8080/warehouse/SM/goodsPicture/5ef50b00552c4a15b3e2cdddd03ae38a.png', '1');
-INSERT INTO `goods_category` VALUES ('6', '电视机', 'http://localhost:8080/warehouse/SM/goodsPicture/bb8bc7d6d41e46b4b2a3182dfcfa9ef7.png', '1');
-INSERT INTO `goods_category` VALUES ('7', '就将计就计', 'http://localhost:8080/warehouse/SM/goodsPicture/42715ef479d54006b3bd8f671b1dee08.png', '0');
-INSERT INTO `goods_category` VALUES ('8', '空调', 'http://localhost:8080/warehouse/SM/goodsPicture/fe7d9167d2c84899ab42c082aaebe0f8.png', '1');
-INSERT INTO `goods_category` VALUES ('9', 'ce', 'http://localhost:8080/warehouse/SM/goodsPicture/13caa33bf8684dd8bb03867cc4e6ecd9.png', '1');
-INSERT INTO `goods_category` VALUES ('10', 'tx', 'http://localhost:8080/warehouse/SM/goodsPicture/678b3a834c754ebba88b450ea9b9ddce.png', '1');
+INSERT INTO `goods_category` VALUES ('1', '冰箱A型', '/warehouse/SM/goodsPicture/10aed7afd9cf460eb6faead5d7556459.png', '1');
+INSERT INTO `goods_category` VALUES ('5', '洗衣机A型', '/warehouse/SM/goodsPicture/5ef50b00552c4a15b3e2cdddd03ae38a.png', '1');
+INSERT INTO `goods_category` VALUES ('6', '电视机A型', '/warehouse/SM/goodsPicture/bb8bc7d6d41e46b4b2a3182dfcfa9ef7.png', '1');
+INSERT INTO `goods_category` VALUES ('7', '就将计就计', '/warehouse/SM/goodsPicture/42715ef479d54006b3bd8f671b1dee08.png', '0');
+INSERT INTO `goods_category` VALUES ('8', '空调A型', '/warehouse/SM/goodsPicture/fe7d9167d2c84899ab42c082aaebe0f8.png', '1');
+INSERT INTO `goods_category` VALUES ('9', 'ce', '/warehouse/SM/goodsPicture/13caa33bf8684dd8bb03867cc4e6ecd9.png', '0');
+INSERT INTO `goods_category` VALUES ('10', 'tx', '/warehouse/SM/goodsPicture/678b3a834c754ebba88b450ea9b9ddce.png', '0');
+INSERT INTO `goods_category` VALUES ('12', '1123123123', '/warehouse/SM/goodsPicture/ce010f4f96cd43758ce5edb3afb22257.png', '0');
+INSERT INTO `goods_category` VALUES ('13', '冰箱B型', '/warehouse/SM/goodsPicture/132d351c36cc4c98a315b7a22cedd4f4.png', '1');
+INSERT INTO `goods_category` VALUES ('14', '冰箱C型', '/warehouse/SM/goodsPicture/0c2305fda94e45fc8082b68cbe0a6d1f.png', '1');
+INSERT INTO `goods_category` VALUES ('15', '洗衣机B型', '/warehouse/SM/goodsPicture/ee104044fd6b4f67a098bdd387d9de87.png', '1');
+INSERT INTO `goods_category` VALUES ('16', '空调B型', '/warehouse/SM/goodsPicture/40d19690ee7f407fad3db7ff39e5bdab.png', '1');
+INSERT INTO `goods_category` VALUES ('17', '电视机B型', '/warehouse/SM/goodsPicture/505772c1f6df45c5b4a96195a6b613d2.png', '1');
+INSERT INTO `goods_category` VALUES ('18', '电视机C型', '/warehouse/SM/goodsPicture/70bad895b36c42abac16025458a0a097.png', '1');
+INSERT INTO `goods_category` VALUES ('19', '空调C型', '/warehouse/SM/goodsPicture/ea9d37e069784141865cff31a30f3dd0.png', '1');
 
 -- ----------------------------
 -- Table structure for goods_house_record
@@ -238,10 +276,21 @@ CREATE TABLE `goods_house_record` (
 -- Records of goods_house_record
 -- ----------------------------
 INSERT INTO `goods_house_record` VALUES ('1', '2021-03-31 17:49:23', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('2', '2021-04-17 15:28:24', null, '1', null);
 INSERT INTO `goods_house_record` VALUES ('4', '2021-03-31 17:40:20', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('5', '2021-04-17 18:29:11', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('7', '2021-04-17 15:28:07', null, '1', null);
 INSERT INTO `goods_house_record` VALUES ('9', '2021-03-31 17:47:59', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('10', '2021-04-17 15:28:16', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('13', '2021-04-17 15:28:11', '2021-04-28 09:38:46', '1', '1');
+INSERT INTO `goods_house_record` VALUES ('14', '2021-04-17 18:05:32', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('17', '2021-04-17 15:28:20', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('18', '2021-04-17 17:04:21', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('19', '2021-04-17 17:05:28', null, '1', null);
 INSERT INTO `goods_house_record` VALUES ('21', '2021-03-31 17:45:08', null, '1', null);
-INSERT INTO `goods_house_record` VALUES ('22', '2021-04-01 10:27:59', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('22', '2021-04-01 10:27:59', '2021-04-17 19:31:36', '1', '1');
+INSERT INTO `goods_house_record` VALUES ('23', '2021-04-17 18:09:26', null, '1', null);
+INSERT INTO `goods_house_record` VALUES ('24', '2021-04-17 18:27:58', null, '1', null);
 INSERT INTO `goods_house_record` VALUES ('34', '2021-04-07 12:24:17', '2021-04-07 12:24:53', '1', '1');
 INSERT INTO `goods_house_record` VALUES ('36', '2021-04-12 17:26:27', '2021-04-12 17:27:56', '1', '1');
 
@@ -262,11 +311,11 @@ CREATE TABLE `goods_man` (
 -- ----------------------------
 -- Records of goods_man
 -- ----------------------------
-INSERT INTO `goods_man` VALUES ('1', '1', '测试商品运输员', 'http://localhost:8080/warehouse/header/e681897e06bb4c94a18adb2a85140848.png', '1', '123555');
-INSERT INTO `goods_man` VALUES ('8', '123', '运输', 'http://localhost:8080/warehouse/header/f3bbafb3203742109e55afe834fc2e83.jpg', '1', '135454');
-INSERT INTO `goods_man` VALUES ('9', '666', '甲方', 'http://localhost:8080/warehouse/header/4.png', '0', '133345');
-INSERT INTO `goods_man` VALUES ('10', '123', 'wang', 'http://localhost:8080/warehouse/header/1.png', '1', '135666');
-INSERT INTO `goods_man` VALUES ('11', '123', 'zhao', 'http://localhost:8080/warehouse/header/5.png', '1', '123456');
+INSERT INTO `goods_man` VALUES ('1', '1', '测试商品运输员', '/warehouse/header/8cf1d9fdd4474e9b819fb17c9776583b.jpg', '1', '123555');
+INSERT INTO `goods_man` VALUES ('8', '123', '运输', '/warehouse/header/f3bbafb3203742109e55afe834fc2e83.jpg', '1', '135454');
+INSERT INTO `goods_man` VALUES ('9', '666', '甲方', '/warehouse/header/4.png', '0', '133345');
+INSERT INTO `goods_man` VALUES ('10', '123', 'wang', '/warehouse/header/1.png', '1', '135666');
+INSERT INTO `goods_man` VALUES ('11', '123', 'zhao', '/warehouse/header/5.png', '1', '123456');
 
 -- ----------------------------
 -- Table structure for goods_quality_record
@@ -295,13 +344,31 @@ INSERT INTO `goods_quality_record` VALUES ('1', '1', '2021-03-31 17:44:05', '1',
 INSERT INTO `goods_quality_record` VALUES ('2', '1', '2021-04-01 10:27:16', '1', null, null, null);
 INSERT INTO `goods_quality_record` VALUES ('3', '1', '2021-03-30 17:19:31', '1', '1', '2021-03-30 17:25:56', '1');
 INSERT INTO `goods_quality_record` VALUES ('4', '1', '2021-03-30 17:33:31', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('5', '1', '2021-04-17 15:17:54', '1', null, null, null);
 INSERT INTO `goods_quality_record` VALUES ('6', '1', '2021-03-30 17:33:40', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('7', '1', '2021-04-17 15:13:40', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('8', '1', '2021-04-17 18:30:57', '1', null, null, null);
 INSERT INTO `goods_quality_record` VALUES ('9', '1', '2021-03-31 17:44:11', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('10', '1', '2021-04-17 15:16:05', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('11', '1', '2021-04-17 15:27:41', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('13', '1', '2021-04-17 15:27:47', '1', '1', '2021-04-17 15:48:15', '1');
+INSERT INTO `goods_quality_record` VALUES ('14', '1', '2021-04-17 15:27:43', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('16', '1', '2021-04-17 15:34:01', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('17', '1', '2021-04-17 15:27:45', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('18', '1', '2021-04-17 15:34:14', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('19', '1', '2021-04-17 15:37:47', '1', null, null, null);
 INSERT INTO `goods_quality_record` VALUES ('21', '1', '2021-03-31 17:44:31', '1', null, null, null);
 INSERT INTO `goods_quality_record` VALUES ('22', '1', '2021-03-31 17:53:35', '1', '1', '2021-04-02 15:55:05', '1');
 INSERT INTO `goods_quality_record` VALUES ('23', '1', '2021-03-31 17:53:38', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('24', '1', '2021-04-17 15:38:23', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('25', '1', '2021-04-28 09:47:13', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('27', '1', '2021-04-17 18:30:59', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('29', '1', '2021-04-17 18:31:03', '1', null, null, null);
+INSERT INTO `goods_quality_record` VALUES ('31', '1', '2021-04-17 18:31:06', '1', null, null, null);
 INSERT INTO `goods_quality_record` VALUES ('34', '1', '2021-04-07 12:23:50', '1', '1', '2021-04-07 12:24:42', '1');
+INSERT INTO `goods_quality_record` VALUES ('35', '1', '2021-04-17 15:35:39', '1', null, null, null);
 INSERT INTO `goods_quality_record` VALUES ('36', '1', '2021-04-12 17:26:02', '1', '1', '2021-04-12 17:27:38', '1');
+INSERT INTO `goods_quality_record` VALUES ('42', '1', '2021-04-28 09:56:40', '1', null, null, null);
 
 -- ----------------------------
 -- Table structure for message
@@ -321,14 +388,14 @@ CREATE TABLE `message` (
   KEY `index_from_id` (`from_id`),
   KEY `index_to_id` (`to_id`),
   KEY `index_conversation_id` (`conversation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=379 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=385 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
 INSERT INTO `message` VALUES ('1', '1', '1', '1', '0', '0_1_1_1', '你好', '1', '2021-04-06 16:30:57');
 INSERT INTO `message` VALUES ('2', '1', '0', '1', '1', '0_1_1_1', 'hello', '1', '2021-04-06 16:50:29');
-INSERT INTO `message` VALUES ('3', '1', '1', '1', '2', '1_2_1_1', 'www', '0', '2021-04-06 21:55:41');
+INSERT INTO `message` VALUES ('3', '1', '1', '1', '2', '1_2_1_1', 'www', '1', '2021-04-06 21:55:41');
 INSERT INTO `message` VALUES ('365', '1', '0', '1', '1', '0_1_1_1', '22222', '1', '2021-04-06 20:24:51');
 INSERT INTO `message` VALUES ('366', '1', '1', '1', '0', '0_1_1_1', '今天天气真好', '1', '2021-04-06 20:26:45');
 INSERT INTO `message` VALUES ('367', '1', '1', '1', '0', '0_1_1_1', '你在干嘛', '1', '2021-04-06 20:26:58');
@@ -342,7 +409,13 @@ INSERT INTO `message` VALUES ('374', '1', '0', '1', '3', '0_3_1_1', '我是商�
 INSERT INTO `message` VALUES ('375', '1', '0', '1', '2', '0_2_1_1', '2222', '0', '2021-04-06 23:17:14');
 INSERT INTO `message` VALUES ('376', '1', '0', '1', '2', '0_2_1_1', '21', '0', '2021-04-06 23:17:22');
 INSERT INTO `message` VALUES ('377', '1', '0', '1', '2', '0_2_1_1', '哇哇哇哇', '0', '2021-04-06 23:21:27');
-INSERT INTO `message` VALUES ('378', '1', '1', '1', '2', '1_2_1_1', '今天星期几呀', '0', '2021-04-07 12:19:58');
+INSERT INTO `message` VALUES ('378', '1', '1', '1', '2', '1_2_1_1', '今天星期几呀', '1', '2021-04-07 12:19:58');
+INSERT INTO `message` VALUES ('379', '1', '1', '1', '0', '0_1_1_1', 'happy ', '0', '2021-04-18 16:26:03');
+INSERT INTO `message` VALUES ('380', '1', '1', '1', '0', '0_1_1_1', 'we were ', '0', '2021-04-18 16:27:58');
+INSERT INTO `message` VALUES ('381', '1', '1', '1', '0', '0_1_1_1', 'hahaha ', '0', '2021-04-18 16:29:33');
+INSERT INTO `message` VALUES ('382', '1', '1', '1', '0', '0_1_1_1', 'ok\nok \nok ', '0', '2021-04-18 16:30:37');
+INSERT INTO `message` VALUES ('383', '1', '1', '1', '0', '0_1_1_1', '', '0', '2021-04-18 16:30:47');
+INSERT INTO `message` VALUES ('384', '1', '1', '1', '0', '0_1_1_1', '\n', '0', '2021-04-18 16:32:29');
 
 -- ----------------------------
 -- Table structure for quality_man
@@ -361,12 +434,12 @@ CREATE TABLE `quality_man` (
 -- ----------------------------
 -- Records of quality_man
 -- ----------------------------
-INSERT INTO `quality_man` VALUES ('1', '1', '测试质检员', 'http://localhost:8080/warehouse/header/f3bbafb3203742109e55afe834fc2e83.jpg', '1', '1545451');
-INSERT INTO `quality_man` VALUES ('2', '123', '中国', 'http://localhost:8080/warehouse/header/4.png', '1', '1515532');
-INSERT INTO `quality_man` VALUES ('3', '123', '李', 'http://localhost:8080/warehouse/header/2.png', '1', '1144454');
-INSERT INTO `quality_man` VALUES ('4', '1', '小王', 'http://localhost:8080/warehouse/header/4.png', '1', '1121585');
-INSERT INTO `quality_man` VALUES ('5', '1', '小李', 'http://localhost:8080/warehouse/header/4.png', '1', '111335');
-INSERT INTO `quality_man` VALUES ('6', '123', 'xx', 'http://localhost:8080/warehouse/header/6.png', '1', '111112');
+INSERT INTO `quality_man` VALUES ('1', '1', '测试质检员', '/warehouse/header/3f66735e967545f196c9f30959b7df5d.jpg', '1', '1545451');
+INSERT INTO `quality_man` VALUES ('2', '123', '中国', '/warehouse/header/4.png', '1', '1515532');
+INSERT INTO `quality_man` VALUES ('3', '123', '李', '/warehouse/header/2.png', '1', '1144454');
+INSERT INTO `quality_man` VALUES ('4', '1', '小王', '/warehouse/header/4.png', '1', '1121585');
+INSERT INTO `quality_man` VALUES ('5', '1', '小李', '/warehouse/header/4.png', '1', '111335');
+INSERT INTO `quality_man` VALUES ('6', '123', 'xx', '/warehouse/header/6.png', '1', '111112');
 
 -- ----------------------------
 -- Table structure for system_manager
@@ -385,7 +458,7 @@ CREATE TABLE `system_manager` (
 -- ----------------------------
 -- Records of system_manager
 -- ----------------------------
-INSERT INTO `system_manager` VALUES ('1', '1', '系统管理员', 'http://localhost:8080/warehouse/header/78ca8c7695e549c29e19b429396a2716.png', '1', '18632251');
+INSERT INTO `system_manager` VALUES ('1', '1', '系统管理员', '/warehouse/header/2.png', '1', '18632251');
 
 -- ----------------------------
 -- Table structure for warehouse
@@ -395,6 +468,7 @@ CREATE TABLE `warehouse` (
   `warehouse_id` int NOT NULL AUTO_INCREMENT,
   `usable_capacity` int NOT NULL,
   `total_capacity` int NOT NULL,
+  `use_capacity` int NOT NULL DEFAULT '0',
   `system_manager_id` int DEFAULT NULL,
   PRIMARY KEY (`warehouse_id`),
   KEY `sm_id_con` (`system_manager_id`),
@@ -404,7 +478,7 @@ CREATE TABLE `warehouse` (
 -- ----------------------------
 -- Records of warehouse
 -- ----------------------------
-INSERT INTO `warehouse` VALUES ('1', '998', '1000', '1');
+INSERT INTO `warehouse` VALUES ('1', '998', '1000', '40', '1');
 
 -- ----------------------------
 -- Table structure for warehouse_manager
@@ -418,10 +492,29 @@ CREATE TABLE `warehouse_manager` (
   `warehouse_manager_status` int NOT NULL,
   `warehouse_manager_tel` varchar(255) NOT NULL,
   PRIMARY KEY (`warehouse_manager_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of warehouse_manager
 -- ----------------------------
-INSERT INTO `warehouse_manager` VALUES ('1', '1', '测试仓库管理员', 'http://localhost:8080/warehouse/header/7a804dafa810458a8d7ab5c7d368c235.jpg', '1', '15151512');
-INSERT INTO `warehouse_manager` VALUES ('2', '1', 'lili', 'http://localhost:8080/warehouse/header/5.png', '1', '15188825');
+INSERT INTO `warehouse_manager` VALUES ('1', '1', '测试仓库管理员', '/warehouse/header/876c5b7edcac4fa0a64de4746ff4309a.jpg', '1', '15151512');
+INSERT INTO `warehouse_manager` VALUES ('2', '1', 'lili', '/warehouse/header/5.png', '1', '15188825');
+INSERT INTO `warehouse_manager` VALUES ('3', '123', '4114', 'http://localhost:8080/warehouse/header/4.png', '1', '1414');
+DROP TRIGGER IF EXISTS `insert_str`;
+DELIMITER ;;
+CREATE TRIGGER `insert_str` AFTER INSERT ON `goods` FOR EACH ROW BEGIN
+	declare c int;
+	SET c = (SELECT COUNT(*) FROM goods WHERE goods_status IN (1,2,4,5,6));
+  UPDATE warehouse SET use_capacity = c WHERE warehouse_id = 1;
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `update_str`;
+DELIMITER ;;
+CREATE TRIGGER `update_str` AFTER UPDATE ON `goods` FOR EACH ROW BEGIN
+	declare c int;
+	SET c = (SELECT COUNT(*) FROM goods WHERE goods_status IN (1,2,4,5,6));
+  UPDATE warehouse SET use_capacity = c WHERE warehouse_id = 1;
+END
+;;
+DELIMITER ;

@@ -21,6 +21,10 @@ public class Warehouse {
      */
     private int totalCapacity;
     /**
+     * 已占用容量
+     */
+    private int useCapacity;
+    /**
      * 系统管理员账号
      */
     private int systemManagerId;
@@ -57,12 +61,21 @@ public class Warehouse {
         this.systemManagerId = systemManagerId;
     }
 
+    public int getUseCapacity() {
+        return useCapacity;
+    }
+
+    public void setUseCapacity(int useCapacity) {
+        this.useCapacity = useCapacity;
+    }
+
     @Override
     public String toString() {
         return "Warehouse{" +
                 "warehouseId=" + warehouseId +
                 ", usableCapacity=" + usableCapacity +
                 ", totalCapacity=" + totalCapacity +
+                ", useCapacity=" + useCapacity +
                 ", systemManagerId=" + systemManagerId +
                 '}';
     }
