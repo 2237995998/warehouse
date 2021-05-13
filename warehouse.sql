@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80021
 File Encoding         : 65001
 
-Date: 2021-05-10 16:09:22
+Date: 2021-05-13 17:16:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -135,7 +135,7 @@ INSERT INTO `goods` VALUES ('32', '1', '1', null);
 INSERT INTO `goods` VALUES ('33', '1', '5', null);
 INSERT INTO `goods` VALUES ('34', '8', '5', '0');
 INSERT INTO `goods` VALUES ('35', '3', '5', null);
-INSERT INTO `goods` VALUES ('36', '8', '9', '0');
+INSERT INTO `goods` VALUES ('36', '8', '9', '100');
 INSERT INTO `goods` VALUES ('37', '1', '1', null);
 INSERT INTO `goods` VALUES ('38', '1', '1', null);
 INSERT INTO `goods` VALUES ('39', '1', '1', null);
@@ -244,8 +244,8 @@ INSERT INTO `goods_category` VALUES ('5', '洗衣机A型', '/warehouse/SM/goodsP
 INSERT INTO `goods_category` VALUES ('6', '电视机A型', '/warehouse/SM/goodsPicture/bb8bc7d6d41e46b4b2a3182dfcfa9ef7.png', '1');
 INSERT INTO `goods_category` VALUES ('7', '就将计就计', '/warehouse/SM/goodsPicture/42715ef479d54006b3bd8f671b1dee08.png', '0');
 INSERT INTO `goods_category` VALUES ('8', '空调A型', '/warehouse/SM/goodsPicture/fe7d9167d2c84899ab42c082aaebe0f8.png', '1');
-INSERT INTO `goods_category` VALUES ('9', 'ce', '/warehouse/SM/goodsPicture/13caa33bf8684dd8bb03867cc4e6ecd9.png', '0');
-INSERT INTO `goods_category` VALUES ('10', 'tx', '/warehouse/SM/goodsPicture/678b3a834c754ebba88b450ea9b9ddce.png', '0');
+INSERT INTO `goods_category` VALUES ('9', '冰箱2021款', '/warehouse/SM/goodsPicture/13caa33bf8684dd8bb03867cc4e6ecd9.png', '1');
+INSERT INTO `goods_category` VALUES ('10', '冰箱2020款', '/warehouse/SM/goodsPicture/678b3a834c754ebba88b450ea9b9ddce.png', '1');
 INSERT INTO `goods_category` VALUES ('12', '1123123123', '/warehouse/SM/goodsPicture/ce010f4f96cd43758ce5edb3afb22257.png', '0');
 INSERT INTO `goods_category` VALUES ('13', '冰箱B型', '/warehouse/SM/goodsPicture/132d351c36cc4c98a315b7a22cedd4f4.png', '1');
 INSERT INTO `goods_category` VALUES ('14', '冰箱C型', '/warehouse/SM/goodsPicture/0c2305fda94e45fc8082b68cbe0a6d1f.png', '1');
