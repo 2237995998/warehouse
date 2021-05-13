@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80021
 File Encoding         : 65001
 
-Date: 2021-04-28 10:08:20
+Date: 2021-05-10 16:09:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,7 +96,7 @@ CREATE TABLE `goods` (
   PRIMARY KEY (`goods_id`),
   KEY `gc_id_con` (`goods_category_id`),
   CONSTRAINT `gc_id_con` FOREIGN KEY (`goods_category_id`) REFERENCES `goods_category` (`goods_category_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods
@@ -388,7 +388,7 @@ CREATE TABLE `message` (
   KEY `index_from_id` (`from_id`),
   KEY `index_to_id` (`to_id`),
   KEY `index_conversation_id` (`conversation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=385 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=387 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of message
@@ -405,7 +405,7 @@ INSERT INTO `message` VALUES ('370', '1', '0', '1', '1', '0_1_1_1', '哈哈哈',
 INSERT INTO `message` VALUES ('371', '1', '0', '1', '1', '0_1_1_1', '111', '1', '2021-04-06 22:47:24');
 INSERT INTO `message` VALUES ('372', '1', '0', '1', '1', '0_1_1_1', 'hhhh', '1', '2021-04-06 22:47:33');
 INSERT INTO `message` VALUES ('373', '1', '0', '1', '3', '0_3_1_1', '你好呀', '0', '2021-04-06 23:05:07');
-INSERT INTO `message` VALUES ('374', '1', '0', '1', '3', '0_3_1_1', '我是商品运输员', '0', '2021-04-06 23:07:24');
+INSERT INTO `message` VALUES ('374', '1', '0', '1', '3', '0_3_1_1', '我是', '0', '2021-04-06 23:07:24');
 INSERT INTO `message` VALUES ('375', '1', '0', '1', '2', '0_2_1_1', '2222', '0', '2021-04-06 23:17:14');
 INSERT INTO `message` VALUES ('376', '1', '0', '1', '2', '0_2_1_1', '21', '0', '2021-04-06 23:17:22');
 INSERT INTO `message` VALUES ('377', '1', '0', '1', '2', '0_2_1_1', '哇哇哇哇', '0', '2021-04-06 23:21:27');
@@ -416,6 +416,8 @@ INSERT INTO `message` VALUES ('381', '1', '1', '1', '0', '0_1_1_1', 'hahaha ', '
 INSERT INTO `message` VALUES ('382', '1', '1', '1', '0', '0_1_1_1', 'ok\nok \nok ', '0', '2021-04-18 16:30:37');
 INSERT INTO `message` VALUES ('383', '1', '1', '1', '0', '0_1_1_1', '', '0', '2021-04-18 16:30:47');
 INSERT INTO `message` VALUES ('384', '1', '1', '1', '0', '0_1_1_1', '\n', '0', '2021-04-18 16:32:29');
+INSERT INTO `message` VALUES ('385', '1', '1', '1', '0', '0_1_1_1', '你好呀', '0', '2021-05-10 15:11:06');
+INSERT INTO `message` VALUES ('386', '1', '1', '1', '0', '0_1_1_1', '哈哈哈', '0', '2021-05-10 15:11:19');
 
 -- ----------------------------
 -- Table structure for quality_man
@@ -500,6 +502,33 @@ CREATE TABLE `warehouse_manager` (
 INSERT INTO `warehouse_manager` VALUES ('1', '1', '测试仓库管理员', '/warehouse/header/876c5b7edcac4fa0a64de4746ff4309a.jpg', '1', '15151512');
 INSERT INTO `warehouse_manager` VALUES ('2', '1', 'lili', '/warehouse/header/5.png', '1', '15188825');
 INSERT INTO `warehouse_manager` VALUES ('3', '123', '4114', 'http://localhost:8080/warehouse/header/4.png', '1', '1414');
+
+-- ----------------------------
+-- Procedure structure for queryConversation
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `queryConversation`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `queryConversation`(
+		in userId INT, 
+		in role INT, 
+		in off INT, 
+		in lim INT
+)
+BEGIN
+	select message_id, from_id, from_role, to_id, to_role, conversation_id, content, status, create_time
+        from message
+        where message_id in (
+            select max(message_id) from message
+            where  status != 2
+            and from_id != -1
+            and ((from_id = userId and from_role = role) or (to_id = userId and to_role = role))
+            group by conversation_id
+        )
+        order by create_time desc
+        limit off, lim;
+END
+;;
+DELIMITER ;
 DROP TRIGGER IF EXISTS `insert_str`;
 DELIMITER ;;
 CREATE TRIGGER `insert_str` AFTER INSERT ON `goods` FOR EACH ROW BEGIN

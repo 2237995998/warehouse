@@ -12,24 +12,22 @@
         from_id, from_role, to_id, to_role, conversation_id, content, status, create_time
     </sql>
 
-    <select id="selectConversation" resultType="com.ye.warehouse.entity.Message">
-        select <include refid="selectFields"></include>
-        from message
-        where message_id in (
-            select max(message_id) from message
-            where  status != 2
-            and from_id != -1
-            and ((from_id = #{userId} and from_role = #{role}) or (to_id = #{userId} and to_role = #{role}))
-            group by conversation_id
-        )
-        order by create_time desc
-        limit #{offset}, #{limit}
+    <select id="selectConversation" statementType="CALLABLE" resultType="com.ye.warehouse.entity.Message">
+        {
+          CALL queryConversation(
+          #{userId, jdbcType=INTEGER, mode=IN},
+          #{role, jdbcType=INTEGER, mode=IN},
+          #{off, jdbcType=INTEGER, mode=IN},
+          #{lim, jdbcType=INTEGER, mode=IN}
+          )
+        }
     </select>
 
     <select id="selectLetters" resultType="com.ye.warehouse.entity.Message">
-        select <include refid="selectFields"></include>
+        select
+        <include refid="selectFields"></include>
         from message
-        where  status != 2
+        where status != 2
         and from_id != -1
         and conversation_id = #{conversationId}
         order by message_id desc

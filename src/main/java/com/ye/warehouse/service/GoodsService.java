@@ -10,6 +10,7 @@ import com.ye.warehouse.entity.GoodsHouseRecord;
 import com.ye.warehouse.entity.GoodsQualityRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -130,6 +131,7 @@ public class GoodsService {
      * @param goodsManId 申请入库的商品运输员账号
      * @return
      */
+    @Transactional
     public int addApplyRecord(int goodsType, int goodsManId){
         Goods goods = new Goods();
         goods.setGoodsCategoryId(goodsType);
