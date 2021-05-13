@@ -421,6 +421,10 @@ public class SystemManagerController {
         } else {
             Map<String, Object> map = new HashMap<>();
             Goods goods = goodsService.getGoodsById((int) goodsId);
+            if(goods == null){
+                model.addAttribute("msg","该商品不存在，请重新输入正确的编号！");
+                return lookProcess(model,page, null);
+            }
             page.setRows(0);
             map.put("goods", goods);
             GoodsCategory goodsCategory = goodsCategoryService.selectGoodsType(goods.getGoodsCategoryId());
