@@ -211,7 +211,7 @@
 <div class="dvheader">
     <div class="dvheadertools">
         <span class="headerspantitle">仓库管理系统</span>
-        <span class="headerspantitle" onclick="logout()">
+        <span class="headerspantitle" onclick="logout()" style="cursor: pointer;">
 					退出登录
 				</span>
 
@@ -221,15 +221,18 @@
 
     <ul class="ulleftmenu" style="border-right: 1px solid #ddd;">
 
-        <li class="limenuitem">
-            <i class="icon-cog menuicon"></i>系统菜单<b class="arrow icon-angle-down arrow-down"></b>
-            <ul class="ulleftsubitems">
+        <li class="limenuitem" onclick="menuShow();">
+            <i class="icon-cog menuicon"></i>系统菜单<b class="arrow icon-angle-down arrow-down" ></b>
+            <ul class="ulleftsubitems" name="menuShow" style="visibility:visible">
 
                 <a th:href="@{/WM/handleInHouse}" target="right">
                     <li>入库管理</li>
                 </a>
                 <a th:href="@{/WM/handleOutHouse}" target="right">
                     <li>出库管理</li>
+                </a>
+                <a th:href="@{/WM/getAllGoodsCount(status = 4)}" target="right">
+                    <li>查看库存</li>
                 </a>
                 <a th:href="@{/WM/getEquipmentTypes}" target="right">
                     <li>器材类别管理</li>
@@ -273,6 +276,14 @@
     function logout() {
         if (window.confirm("确认退出？")) {
             window.location.href = "logout";
+        }
+    }
+    function menuShow() {
+        var menu = document.getElementsByName("menuShow");
+        if (menu[0].style.cssText === "display: none;") {
+            menu[0].style = "visibility:visible";
+        } else if (menu[0].style.cssText === "visibility: visible;") {
+            menu[0].style = "display:none";
         }
     }
 </script>

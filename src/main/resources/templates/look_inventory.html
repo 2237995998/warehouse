@@ -33,84 +33,84 @@
                             状态</label>
                         <form  style="text-align:center" th:action="@{/SM/getAllGoodsCount}" method="get">
 
-                                <select name="status" class="form-control" th:if="${status}==1">
-                                    <option value=1 selected="selected" >申请入库</option>
+                                <select name="status" class="form-control" th:if="${status}==1  ">
+                                    <option value=1 selected="selected" th:if="${session.role}==1">申请入库</option>
                                     <option value=2 >准备入库</option>
-                                    <option value=3>入库质检失败</option>
+                                    <option value=3 th:if="${session.role}==1">入库质检失败</option>
                                     <option value=4>在库中</option>
-                                    <option value=5>出库申请</option>
+                                    <option value=5 th:if="${session.role}==1">出库申请</option>
                                     <option value=6>准备出库</option>
-                                    <option value=7>出库质检失败</option>
+                                    <option value=7 th:if="${session.role}==1">出库质检失败</option>
                                     <option value=8  >已出库</option>
                                 </select>
                                 <select name="status" class="form-control" th:if="${status}==2">
-                                    <option value=1 >申请入库</option>
+                                    <option value=1 th:if="${session.role}==1">申请入库</option>
                                     <option value=2 selected="selected">准备入库</option>
-                                    <option value=3>入库质检失败</option>
+                                    <option value=3 th:if="${session.role}==1">入库质检失败</option>
                                     <option value=4>在库中</option>
-                                    <option value=5>出库申请</option>
+                                    <option value=5 th:if="${session.role}==1">出库申请</option>
                                     <option value=6>准备出库</option>
-                                    <option value=7 >出库质检失败</option>
+                                    <option value=7 th:if="${session.role}==1">出库质检失败</option>
                                     <option value=8  >已出库</option>
                                 </select>
                                 <select name="status" class="form-control" th:if="${status}==3">
-                                    <option value=1 >申请入库</option>
+                                    <option value=1 th:if="${session.role}==1">申请入库</option>
                                     <option value=2 >准备入库</option>
-                                    <option value=3 selected="selected">入库质检失败</option>
+                                    <option value=3 selected="selected" th:if="${session.role}==1">入库质检失败</option>
                                     <option value=4>在库中</option>
-                                    <option value=5>出库申请</option>
+                                    <option value=5 th:if="${session.role}==1">出库申请</option>
                                     <option value=6>准备出库</option>
-                                    <option value=7>出库质检失败</option>
+                                    <option value=7 th:if="${session.role}==1">出库质检失败</option>
                                     <option value=8  >已出库</option>
                                 </select>
                                 <select name="status" class="form-control" th:if="${status}==4">
-                                    <option value=1 >申请入库</option>
+                                    <option value=1 th:if="${session.role}==1">申请入库</option>
                                     <option value=2 >准备入库</option>
-                                    <option value=3>入库质检失败</option>
+                                    <option value=3 th:if="${session.role}==1">入库质检失败</option>
                                     <option value=4 selected="selected">在库中</option>
-                                    <option value=5>出库申请</option>
+                                    <option value=5 th:if="${session.role}==1">出库申请</option>
                                     <option value=6>准备出库</option>
-                                    <option value=7 >出库质检失败</option>
+                                    <option value=7 th:if="${session.role}==1">出库质检失败</option>
                                     <option value=8  >已出库</option>
                                 </select>
                                 <select name="status" class="form-control" th:if="${status}==5">
-                                    <option value=1 >申请入库</option>
+                                    <option value=1 th:if="${session.role}==1">申请入库</option>
                                     <option value=2 >准备入库</option>
-                                    <option value=3>入库质检失败</option>
+                                    <option value=3 th:if="${session.role}==1">入库质检失败</option>
                                     <option value=4>在库中</option>
-                                    <option value=5 selected="selected">出库申请</option>
+                                    <option value=5 selected="selected" th:if="${session.role}==1">出库申请</option>
                                     <option value=6>准备出库</option>
-                                    <option value=7 >出库质检失败</option>
+                                    <option value=7 th:if="${session.role}==1">出库质检失败</option>
                                     <option value=8  >已出库</option>
                                 </select>
                                 <select name="status" class="form-control" th:if="${status}==6">
-                                    <option value=1 >申请入库</option>
+                                    <option value=1 th:if="${session.role}==1">申请入库</option>
                                     <option value=2 >准备入库</option>
-                                    <option value=3>入库质检失败</option>
+                                    <option value=3 th:if="${session.role}==1">入库质检失败</option>
                                     <option value=4>在库中</option>
-                                    <option value=5>出库申请</option>
+                                    <option value=5 th:if="${session.role}==1">出库申请</option>
                                     <option value=6 selected="selected">准备出库</option>
-                                    <option value=7 >出库质检失败</option>
+                                    <option value=7 th:if="${session.role}==1">出库质检失败</option>
                                     <option value=8  >已出库</option>
                                 </select>
                                 <select name="status" class="form-control" th:if="${status}==7">
-                                    <option value=1 >申请入库</option>
+                                    <option value=1 th:if="${session.role}==1">申请入库</option>
                                     <option value=2 >准备入库</option>
-                                    <option value=3>入库质检失败</option>
+                                    <option value=3 th:if="${session.role}==1">入库质检失败</option>
                                     <option value=4>在库中</option>
-                                    <option value=5>出库申请</option>
+                                    <option value=5 th:if="${session.role}==1">出库申请</option>
                                     <option value=6>准备出库</option>
-                                    <option value=7 selected="selected">出库质检失败</option>
+                                    <option value=7 selected="selected" th:if="${session.role}==1">出库质检失败</option>
                                     <option value=8  >已出库</option>
                                 </select>
                                 <select name="status" class="form-control" th:if="${status}==8">
-                                    <option value=1 >申请入库</option>
+                                    <option value=1 th:if="${session.role}==1">申请入库</option>
                                     <option value=2 >准备入库</option>
-                                    <option value=3>入库质检失败</option>
+                                    <option value=3 th:if="${session.role}==1">入库质检失败</option>
                                     <option value=4>在库中</option>
-                                    <option value=5>出库申请</option>
+                                    <option value=5 th:if="${session.role}==1">出库申请</option>
                                     <option value=6>准备出库</option>
-                                    <option value=7>出库质检失败</option>
+                                    <option value=7 th:if="${session.role}==1">出库质检失败</option>
                                     <option value=8 selected="selected" >已出库</option>
                                 </select>
                             <button class="btn btn-primary">

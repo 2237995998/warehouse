@@ -211,7 +211,7 @@
 <div class="dvheader">
     <div class="dvheadertools">
         <span class="headerspantitle">仓库管理系统</span>
-        <span class="headerspantitle" onclick="logout()">
+        <span class="headerspantitle" onclick="logout()" style="cursor: pointer;">
 					退出登录
 				</span>
     </div>
@@ -220,9 +220,9 @@
 
     <ul class="ulleftmenu" style="border-right: 1px solid #ddd;">
 
-        <li class="limenuitem">
-            <i class="icon-cog menuicon"></i>系统菜单<b class="arrow icon-angle-down arrow-down"></b>
-            <ul class="ulleftsubitems">
+        <li class="limenuitem" onclick="menuShow();">
+            <i class="icon-cog menuicon" ></i>系统菜单<b class="arrow icon-angle-down arrow-down" ></b>
+            <ul class="ulleftsubitems" name="menuShow" style="visibility:visible">
                 <a th:href="@{QM/qualityCheck(type=1)}" target="right">
                     <li>质检</li>
                 </a>
@@ -260,6 +260,15 @@
     function logout() {
         if (window.confirm("确认退出？")) {
             window.location.href = "logout";
+        }
+    }
+
+    function menuShow() {
+        var menu = document.getElementsByName("menuShow");
+        if (menu[0].style.cssText === "display: none;") {
+            menu[0].style = "visibility:visible";
+        } else if (menu[0].style.cssText === "visibility: visible;") {
+            menu[0].style = "display:none";
         }
     }
 </script>

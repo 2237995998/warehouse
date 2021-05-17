@@ -416,4 +416,30 @@ public class WarehouseManagerController {
         model.addAttribute("msg", "出库成功！");
         return handleOutHouse(model, page);
     }
+
+    /**
+     * 查看每类商品在各种状态下的数量，跳到查看库存界面
+     *
+     * @param model
+     * @param status 状态
+     * @param page
+     * @return
+     */
+    @RequestMapping(path = "/getAllGoodsCount", method = RequestMethod.GET)
+    public String getAllGoodsCount(Model model, int status, Page page) {
+        List<GoodsCategory> goodsCategories = goodsCategoryService.getGoodsTypes(page.getOffset(), page.getLimit());
+        page.setPath("/WM/getAllGoodsCount?status=" + status);
+        page.setRows(goodsCategoryService.getGoodsTypesCount());
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (GoodsCategory category : goodsCategories) {
+            int count = goodsService.getAllGoodsCountByTypeId(category.getGoodsCategoryId(), status);
+            Map<String, Object> map = new HashMap<>();
+            map.put("category", category);
+            map.put("count", count);
+            list.add(map);
+        }
+        model.addAttribute("list", list);
+        model.addAttribute("status", status);
+        return "/look_inventory";
+    }
 }
