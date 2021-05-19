@@ -27,4 +27,6 @@ public interface GoodsMapper {
     List<Goods> selectAllGoods(int offset, int limit);
 
     int selectAllGoodsCount();
+
+    int selectGoodsCountByTypeId(int typeId, int status);
 }

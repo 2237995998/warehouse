@@ -10,12 +10,14 @@
         goods_status, goods_category_id
     </sql>
     <select id="selectGoodsById" resultType="com.ye.warehouse.entity.Goods">
-        select <include refid="select"> </include>
+        select
+        <include refid="select"></include>
         from goods
         where goods_id = #{id}
     </select>
     <select id="selectAllByGoodsTypeId" resultType="com.ye.warehouse.entity.Goods">
-        select <include refid="select"> </include>
+        select
+        <include refid="select"></include>
         from goods
         where goods_status = #{status}
         <if test="id!=-1">
@@ -78,6 +80,14 @@
     <select id="selectAllGoodsCount" resultType="java.lang.Integer">
         select count(*)
         from goods
+    </select>
+
+    <select id="selectGoodsCountByTypeId" resultType="java.lang.Integer">
+        select count(*)
+        from goods
+        where goods_status = #{status}
+        and goods_category_id = #{typeId}
+
     </select>
 
 

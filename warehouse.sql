@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80021
 File Encoding         : 65001
 
-Date: 2021-05-13 17:16:54
+Date: 2021-05-18 16:45:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,7 +96,7 @@ CREATE TABLE `goods` (
   PRIMARY KEY (`goods_id`),
   KEY `gc_id_con` (`goods_category_id`),
   CONSTRAINT `gc_id_con` FOREIGN KEY (`goods_category_id`) REFERENCES `goods_category` (`goods_category_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods
@@ -122,7 +122,7 @@ INSERT INTO `goods` VALUES ('19', '4', '1', '15');
 INSERT INTO `goods` VALUES ('20', '1', '1', null);
 INSERT INTO `goods` VALUES ('21', '5', '6', '4');
 INSERT INTO `goods` VALUES ('22', '8', '5', '0');
-INSERT INTO `goods` VALUES ('23', '4', '5', '19');
+INSERT INTO `goods` VALUES ('23', '5', '5', '19');
 INSERT INTO `goods` VALUES ('24', '4', '1', '145');
 INSERT INTO `goods` VALUES ('25', '3', '1', null);
 INSERT INTO `goods` VALUES ('26', '1', '5', null);
@@ -151,6 +151,10 @@ INSERT INTO `goods` VALUES ('48', '1', '1', null);
 INSERT INTO `goods` VALUES ('49', '1', '8', null);
 INSERT INTO `goods` VALUES ('50', '1', '8', null);
 INSERT INTO `goods` VALUES ('51', '1', '8', null);
+INSERT INTO `goods` VALUES ('58', '1', '5', null);
+INSERT INTO `goods` VALUES ('59', '1', '8', null);
+INSERT INTO `goods` VALUES ('60', '1', '6', null);
+INSERT INTO `goods` VALUES ('61', '1', '18', null);
 
 -- ----------------------------
 -- Table structure for goods_apply_record
@@ -194,7 +198,7 @@ INSERT INTO `goods_apply_record` VALUES ('19', '2021-03-30 17:32:42', null, '1',
 INSERT INTO `goods_apply_record` VALUES ('20', '2021-03-30 17:32:42', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('21', '2021-03-31 17:42:25', '2021-04-16 11:41:43', '1', '1');
 INSERT INTO `goods_apply_record` VALUES ('22', '2021-03-31 17:53:19', '2021-04-01 14:48:06', '1', '1');
-INSERT INTO `goods_apply_record` VALUES ('23', '2021-03-31 17:53:19', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('23', '2021-03-31 17:53:19', '2021-05-17 22:53:48', '1', '1');
 INSERT INTO `goods_apply_record` VALUES ('24', '2021-04-01 14:22:24', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('25', '2021-04-01 14:22:24', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('26', '2021-04-01 14:43:09', null, '1', null);
@@ -223,6 +227,10 @@ INSERT INTO `goods_apply_record` VALUES ('48', '2021-04-28 09:37:53', null, '1',
 INSERT INTO `goods_apply_record` VALUES ('49', '2021-04-28 09:49:43', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('50', '2021-04-28 09:49:43', null, '1', null);
 INSERT INTO `goods_apply_record` VALUES ('51', '2021-04-28 09:49:43', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('58', '2021-05-17 18:43:35', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('59', '2021-05-17 18:45:41', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('60', '2021-05-17 18:46:41', null, '1', null);
+INSERT INTO `goods_apply_record` VALUES ('61', '2021-05-17 18:48:44', null, '1', null);
 
 -- ----------------------------
 -- Table structure for goods_category
@@ -311,7 +319,7 @@ CREATE TABLE `goods_man` (
 -- ----------------------------
 -- Records of goods_man
 -- ----------------------------
-INSERT INTO `goods_man` VALUES ('1', '1', '测试商品运输员', '/warehouse/header/8cf1d9fdd4474e9b819fb17c9776583b.jpg', '1', '123555');
+INSERT INTO `goods_man` VALUES ('1', '1', '测试商品运输员', '/warehouse/header/e28848476b094ed8ad6817c497635c67.png', '1', '123555');
 INSERT INTO `goods_man` VALUES ('8', '123', '运输', '/warehouse/header/f3bbafb3203742109e55afe834fc2e83.jpg', '1', '135454');
 INSERT INTO `goods_man` VALUES ('9', '666', '甲方', '/warehouse/header/4.png', '0', '133345');
 INSERT INTO `goods_man` VALUES ('10', '123', 'wang', '/warehouse/header/1.png', '1', '135666');
@@ -388,7 +396,7 @@ CREATE TABLE `message` (
   KEY `index_from_id` (`from_id`),
   KEY `index_to_id` (`to_id`),
   KEY `index_conversation_id` (`conversation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=387 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=390 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of message
@@ -414,10 +422,11 @@ INSERT INTO `message` VALUES ('379', '1', '1', '1', '0', '0_1_1_1', 'happy ', '0
 INSERT INTO `message` VALUES ('380', '1', '1', '1', '0', '0_1_1_1', 'we were ', '0', '2021-04-18 16:27:58');
 INSERT INTO `message` VALUES ('381', '1', '1', '1', '0', '0_1_1_1', 'hahaha ', '0', '2021-04-18 16:29:33');
 INSERT INTO `message` VALUES ('382', '1', '1', '1', '0', '0_1_1_1', 'ok\nok \nok ', '0', '2021-04-18 16:30:37');
-INSERT INTO `message` VALUES ('383', '1', '1', '1', '0', '0_1_1_1', '', '0', '2021-04-18 16:30:47');
-INSERT INTO `message` VALUES ('384', '1', '1', '1', '0', '0_1_1_1', '\n', '0', '2021-04-18 16:32:29');
 INSERT INTO `message` VALUES ('385', '1', '1', '1', '0', '0_1_1_1', '你好呀', '0', '2021-05-10 15:11:06');
 INSERT INTO `message` VALUES ('386', '1', '1', '1', '0', '0_1_1_1', '哈哈哈', '0', '2021-05-10 15:11:19');
+INSERT INTO `message` VALUES ('387', '1', '1', '1', '0', '0_1_1_1', 'would  you\nwollll ', '0', '2021-05-17 22:56:13');
+INSERT INTO `message` VALUES ('388', '1', '1', '1', '0', '0_1_1_1', '\nhhhh2 you&#39;d', '0', '2021-05-17 22:57:14');
+INSERT INTO `message` VALUES ('389', '1', '1', '1', '0', '0_1_1_1', 'kyi2', '0', '2021-05-18 09:36:44');
 
 -- ----------------------------
 -- Table structure for quality_man
@@ -437,7 +446,7 @@ CREATE TABLE `quality_man` (
 -- Records of quality_man
 -- ----------------------------
 INSERT INTO `quality_man` VALUES ('1', '1', '测试质检员', '/warehouse/header/3f66735e967545f196c9f30959b7df5d.jpg', '1', '1545451');
-INSERT INTO `quality_man` VALUES ('2', '123', '中国', '/warehouse/header/4.png', '1', '1515532');
+INSERT INTO `quality_man` VALUES ('2', '123', '中国111', '/warehouse/header/4.png', '1', '1515532');
 INSERT INTO `quality_man` VALUES ('3', '123', '李', '/warehouse/header/2.png', '1', '1144454');
 INSERT INTO `quality_man` VALUES ('4', '1', '小王', '/warehouse/header/4.png', '1', '1121585');
 INSERT INTO `quality_man` VALUES ('5', '1', '小李', '/warehouse/header/4.png', '1', '111335');
@@ -480,7 +489,7 @@ CREATE TABLE `warehouse` (
 -- ----------------------------
 -- Records of warehouse
 -- ----------------------------
-INSERT INTO `warehouse` VALUES ('1', '998', '1000', '40', '1');
+INSERT INTO `warehouse` VALUES ('1', '998', '1000', '44', '1');
 
 -- ----------------------------
 -- Table structure for warehouse_manager
@@ -499,7 +508,7 @@ CREATE TABLE `warehouse_manager` (
 -- ----------------------------
 -- Records of warehouse_manager
 -- ----------------------------
-INSERT INTO `warehouse_manager` VALUES ('1', '1', '测试仓库管理员', '/warehouse/header/876c5b7edcac4fa0a64de4746ff4309a.jpg', '1', '15151512');
+INSERT INTO `warehouse_manager` VALUES ('1', '1', '测试仓库管理员', '/warehouse/header/bc0c4413ebf24f5fa3afff0a89b6f00b.png', '1', '15151512');
 INSERT INTO `warehouse_manager` VALUES ('2', '1', 'lili', '/warehouse/header/5.png', '1', '15188825');
 INSERT INTO `warehouse_manager` VALUES ('3', '123', '4114', 'http://localhost:8080/warehouse/header/4.png', '1', '1414');
 

@@ -89,16 +89,13 @@ public class GoodsService {
 
 
     /**
-     * 分页获取某一类别下的某一状态的商品数量
+     * 获取某一类别下的某一状态的商品数量
      * @param typeId 商品类别
      * @param status 状态
-     * @param offset 起始位置
-     * @param limit 数量
      * @return
      */
-    public int getGoodsCountByTypeId(int typeId, int status, int offset, int limit){
-        List<Goods> goodsList = getAllGoods(typeId, status, offset, limit);
-        return goodsList.size();
+    public int getGoodsCountByTypeId(int typeId, int status){
+        return goodsMapper.selectGoodsCountByTypeId(typeId, status);
     }
 
     /**
@@ -138,11 +135,13 @@ public class GoodsService {
         goods.setGoodsStatus(1);
         int result = goodsMapper.insertGoods(goods);
         if (result == 1) {
+//            int a = 1/0;
             GoodsApplyRecord goodsApplyRecord = new GoodsApplyRecord();
             goodsApplyRecord.setGoodsId(goods.getGoodsId());
             goodsApplyRecord.setGoodsManInId(goodsManId);
             goodsApplyRecord.setInApplyTime(new Date());
-            return goodsApplyRecordMapper.insertApplyRecord(goodsApplyRecord);
+            int re = goodsApplyRecordMapper.insertApplyRecord(goodsApplyRecord);
+            return re;
         }
         return 0;
     }

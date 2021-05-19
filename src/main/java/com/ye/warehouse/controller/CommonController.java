@@ -38,12 +38,6 @@ public class CommonController {
     @Value("${server.servlet.context-path}")
     private String contextPath;
 
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
-    @ResponseBody
-    public String test(){
-        System.out.println("ssss");
-        return "成功!!!";
-    }
 
     /**
      * 前往登录界面

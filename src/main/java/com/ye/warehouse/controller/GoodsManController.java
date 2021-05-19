@@ -4,6 +4,7 @@ import com.ye.warehouse.entity.*;
 import com.ye.warehouse.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,7 +60,7 @@ public class GoodsManController {
         page.setPath("/GM/toOutApply");
         List<Map<String, Object>> list = new ArrayList<>();
         for (GoodsCategory category : goodsCategories) {
-            int count = goodsService.getGoodsCountByTypeId(category.getGoodsCategoryId(), 4, page.getOffset(), page.getLimit());
+            int count = goodsService.getGoodsCountByTypeId(category.getGoodsCategoryId(), 4);
             Map<String, Object> map = new HashMap<>();
             map.put("category", category);
             map.put("count", count);
@@ -79,6 +80,7 @@ public class GoodsManController {
      * @return
      */
     @RequestMapping(path = "/inApply", method = RequestMethod.POST)
+    @Transactional
     public String inApply(int count, int goodsType, Model model, HttpSession session, Page page){
         GoodsMan goodsMan = (GoodsMan)session.getAttribute("user");
         boolean flag = true;
@@ -121,9 +123,11 @@ public class GoodsManController {
                 goodsService.updateGoodsStatus(goods.getGoodsId(), 5);
                 GoodsMan goodsMan = (GoodsMan)session.getAttribute("user");
                 goodsService.updateOutApplyTime(goods.getGoodsId(), new Date(), goodsMan.getGoodsManId());
+                System.out.println(111);
             }
             model.addAttribute("msg", "申请成功！");
         }
+        System.out.println(222);
         return toOutApply(model, page);
     }
 }

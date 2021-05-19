@@ -311,7 +311,7 @@ public class UserService {
         } else if (role == 1) {
             GoodsMan goodsMan = userMapper.selectGoodsManByName(userName);
             if (goodsMan != null) {
-                map.put("usernameMsg", "该账号已存在");
+                map.put("usernameMsg", "该昵称已被使用!");
                 return map;
             }
             goodsMan = userMapper.selectGoodsManByTel(tel);
@@ -331,12 +331,12 @@ public class UserService {
         } else if (role == 2) {
             QualityMan qualityMan = userMapper.selectQualityManByName(userName);
             if (qualityMan != null) {
-                map.put("usernameMsg", "该账号已存在");
+                map.put("usernameMsg", "该昵称已被使用!");
                 return map;
             }
             qualityMan = userMapper.selectQualityManByTel(tel);
             if (qualityMan != null) {
-                map.put("telMsg", "改手机号已经被注册！");
+                map.put("usernameMsg", "该昵称已被使用!");
                 return map;
             }
             qualityMan = new QualityMan();
@@ -351,7 +351,7 @@ public class UserService {
         } else if (role == 3) {
             WarehouseManager warehouseManager = userMapper.selectWarehouseManagerByName(userName);
             if (warehouseManager != null) {
-                map.put("usernameMsg", "该账号已存在");
+                map.put("usernameMsg", "该昵称已被使用!");
                 return map;
             }
             warehouseManager = userMapper.selectWarehouseManagerByTel(tel);
