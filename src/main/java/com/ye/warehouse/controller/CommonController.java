@@ -39,6 +39,13 @@ public class CommonController {
     private String contextPath;
 
 
+    @RequestMapping(path = "/exception", method = RequestMethod.GET)
+    public String getErrorPage(Model model){
+        model.addAttribute("msg", "操作失败,服务器异常,请稍后重试!!!");
+        return "/error";
+    }
+
+
     /**
      * 前往登录界面
      * @return

@@ -14,17 +14,20 @@
         select <include refid="selectSM"></include>
         from system_manager
         where system_manager_id = #{id}
+        and system_manager_status = 1
     </select>
     <select id="selectSystemManagerByName" resultType="com.ye.warehouse.entity.SystemManager">
         select <include refid="selectSM"></include>
         from system_manager
         where system_manager_name = #{username}
+        and system_manager_status = 1
     </select>
 
     <select id="selectSystemManagerByTel" resultType="com.ye.warehouse.entity.SystemManager">
         select <include refid="selectSM"></include>
         from system_manager
         where system_manager_tel = #{tel}
+        and system_manager_status = 1
     </select>
     <insert id="insertSystemManager" parameterType="com.ye.warehouse.entity.SystemManager" keyProperty="systemManagerId">
         insert into system_manager (<include refid="insertSM"></include>)
@@ -52,16 +55,19 @@
         select <include refid="selectGM"></include>
         from goods_man
         where goods_man_id = #{id}
+        and goods_man_status = 1
     </select>
     <select id="selectGoodsManByName" resultType="com.ye.warehouse.entity.GoodsMan">
         select <include refid="selectGM"></include>
         from goods_man
         where goods_man_name = #{username}
+        and goods_man_status = 1
     </select>
     <select id="selectGoodsManByTel" resultType="com.ye.warehouse.entity.GoodsMan">
         select <include refid="selectGM"></include>
         from goods_man
         where goods_man_tel = #{tel}
+        and goods_man_status = 1
     </select>
     <insert id="insertGoodsMan" parameterType="com.ye.warehouse.entity.GoodsMan" keyProperty="goodsManId">
         insert into goods_man (<include refid="insertGM"></include>)
@@ -98,16 +104,19 @@
         select <include refid="selectQM"></include>
         from quality_man
         where quality_man_id = #{id}
+        and quality_man_status = 1
     </select>
     <select id="selectQualityManByName" resultType="com.ye.warehouse.entity.QualityMan">
         select <include refid="selectQM"></include>
         from quality_man
         where quality_man_name = #{username}
+        and quality_man_status = 1
     </select>
     <select id="selectQualityManByTel" resultType="com.ye.warehouse.entity.QualityMan">
         select <include refid="selectQM"></include>
         from quality_man
         where quality_man_tel = #{tel}
+        and quality_man_status = 1
     </select>
     <insert id="insertQualityMan" parameterType="com.ye.warehouse.entity.QualityMan" keyProperty="qualityManId">
         insert into quality_man (<include refid="insertQM"></include>)
@@ -144,16 +153,19 @@
         select <include refid="selectWM"></include>
         from warehouse_manager
         where warehouse_manager_id = #{id}
+        and warehouse_manager_status = 1
     </select>
     <select id="selectWarehouseManagerByName" resultType="com.ye.warehouse.entity.WarehouseManager">
         select <include refid="selectWM"></include>
         from warehouse_manager
         where warehouse_manager_name = #{username}
+        and warehouse_manager_status = 1
     </select>
     <select id="selectWarehouseManagerByTel" resultType="com.ye.warehouse.entity.WarehouseManager">
         select <include refid="selectWM"></include>
         from warehouse_manager
         where warehouse_manager_tel = #{tel}
+        and warehouse_manager_status = 1
     </select>
     <insert id="insertWarehouseManager" parameterType="com.ye.warehouse.entity.WarehouseManager" keyProperty="warehouseManagerId">
         insert into warehouse_manager (<include refid="insertWM"></include>)
