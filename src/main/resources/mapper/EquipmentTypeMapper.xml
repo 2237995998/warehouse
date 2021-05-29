@@ -32,11 +32,11 @@
     </update>
 
 
-    <delete id="updateStatus">
+    <update id="updateStatus">
         update equipment_category
         set equipment_category_status = #{status}
         where equipment_category_id = #{id}
-    </delete>
+    </update>
 
     <select id="getEquipmentTypes" resultType="com.ye.warehouse.entity.EquipmentCategory">
         select <include refid="select"></include>

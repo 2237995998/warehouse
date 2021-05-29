@@ -104,8 +104,8 @@ public class WarehouseManagerController {
      */
     @RequestMapping(path = "/pictureUpload", method = RequestMethod.POST)
     public String uploadGoodsTypePicture(MultipartFile headerImage, Model model, int equipmentTypeId, Page page){
-        if (headerImage == null){
-            model.addAttribute("error","您还没有选择图片!");
+        if (headerImage.isEmpty()) {
+            model.addAttribute("msg", "您还没有选择图片!");
             return getEquipmentTypes(model, page);
         }
         String fileName = headerImage.getOriginalFilename();
@@ -136,8 +136,8 @@ public class WarehouseManagerController {
      */
     @RequestMapping(path = "/addEquipmentType", method = RequestMethod.POST)
     public String addEquipmentType(MultipartFile headerImage, String name, Model model, Page page){
-        if (headerImage == null){
-            model.addAttribute("error","您还没有选择图片!");
+        if (headerImage.isEmpty()) {
+            model.addAttribute("msg", "您还没有选择图片!");
             return getEquipmentTypes(model, page);
         }
         String fileName = headerImage.getOriginalFilename();
@@ -173,7 +173,7 @@ public class WarehouseManagerController {
     public String deleteEquipmentType(Model model, int id, Page page){
         int count  = equipmentService.getEquipmentsCountByTypeId(id, 1);
         if (count != 0){
-            model.addAttribute("msg", "删除失败，该类别下存在商品");
+            model.addAttribute("msg", "删除失败，该类别下存在器材在使用");
         }else {
             equipmentCategoryService.updateEquipmentTypeStatus(id, 0);
             model.addAttribute("msg", "删除成功");

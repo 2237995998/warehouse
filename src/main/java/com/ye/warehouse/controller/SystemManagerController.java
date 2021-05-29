@@ -79,8 +79,8 @@ public class SystemManagerController {
      */
     @RequestMapping(path = "/addGoodsTypes", method = RequestMethod.POST)
     public String addGoodsTypes(MultipartFile headerImage, String name, Model model, Page page) {
-        if (headerImage == null) {
-            model.addAttribute("error", "您还没有选择图片!");
+        if (headerImage.isEmpty()) {
+            model.addAttribute("msg", "您还没有选择图片!");
             return getGoodsTypes(model, page);
         }
         String fileName = headerImage.getOriginalFilename();
@@ -162,8 +162,8 @@ public class SystemManagerController {
      */
     @RequestMapping(path = "/pictureUpload", method = RequestMethod.POST)
     public String uploadGoodsTypePicture(MultipartFile headerImage, Model model, int goodsTypeId, Page page) {
-        if (headerImage == null) {
-            model.addAttribute("error", "您还没有选择图片!");
+        if (headerImage.isEmpty()) {
+            model.addAttribute("msg", "您还没有选择图片!");
             return getGoodsTypes(model, page);
         }
         String fileName = headerImage.getOriginalFilename();
